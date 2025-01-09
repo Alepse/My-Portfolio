@@ -3,6 +3,7 @@ import { storage } from './firebase'
 import { ref, getDownloadURL, listAll, getMetadata } from 'firebase/storage'
 import Profile from '../src/assets/profile.jpg'
 import { CiLink } from "react-icons/ci"
+import { FiDownload } from "react-icons/fi";
 
 const skillsData = [
   { name: 'HTML', icon: 'https://cdn.jsdelivr.net/npm/simple-icons@v7/icons/html5.svg' },
@@ -87,18 +88,41 @@ function App() {
   return (
     <div className="min-h-screen bg-gray-100">
       <header className="bg-white text-gray-800 py-6 sticky top-0 z-10 shadow-md">
-        <div className="container mx-auto px-4 flex flex-col md:flex-row justify-between items-center">
-          <div className="mb-4 md:mb-0 text-center md:text-left">
-            <h1 className="text-3xl md:text-4xl font-bold">Kenneth Espela</h1>
-            <p className="text-lg md:text-xl mt-2 text-blue-600">Frontend Developer</p>
-          </div>
-          <nav className="flex flex-wrap justify-center md:justify-end">
-            <button onClick={() => scrollToSection('about')} className="px-4 py-2 text-gray-600 hover:text-blue-600 transition duration-300">About</button>
-            <button onClick={() => scrollToSection('expertise')} className="px-4 py-2 text-gray-600 hover:text-blue-600 transition duration-300">Expertise</button>
-            <button onClick={() => scrollToSection('projects')} className="px-4 py-2 text-gray-600 hover:text-blue-600 transition duration-300">Projects</button>
-          </nav>
+      <div className="container mx-auto px-4 flex flex-col md:flex-row justify-between items-center">
+        <div className="mb-4 md:mb-0 text-center md:text-left">
+          <h1 className="text-3xl md:text-4xl font-bold">Kenneth Espela</h1>
+          <p className="text-lg md:text-xl mt-2 text-blue-600">Frontend Developer</p>
         </div>
-      </header>
+        <nav className="flex flex-wrap justify-center md:justify-end items-center space-x-4">
+          <button
+            onClick={() => scrollToSection("about")}
+            className="px-4 py-2 text-gray-600 hover:text-blue-600 transition duration-300"
+          >
+            About
+          </button>
+          <button
+            onClick={() => scrollToSection("expertise")}
+            className="px-4 py-2 text-gray-600 hover:text-blue-600 transition duration-300"
+          >
+            Skills
+          </button>
+          <button
+            onClick={() => scrollToSection("projects")}
+            className="px-4 py-2 text-gray-600 hover:text-blue-600 transition duration-300"
+          >
+            Projects
+          </button>
+          <a
+            href="/public/Kenneth Espela_CV Resume.docx"
+            download
+            className="px-4 py-2 bg-blue-600 text-white flex items-center gap-2 rounded-lg hover:bg-blue-700 transition duration-300"
+          >
+            <FiDownload className="text-lg" />
+            Download CV
+          </a>
+        </nav>
+      </div>
+    </header>
 
       <main className="container mx-auto px-4 py-16">
         <section id="about" ref={sectionRefs.about} className="mb-20 flex flex-col md:flex-row items-center">
@@ -112,7 +136,7 @@ function App() {
         </section>
 
         <section id="expertise" ref={sectionRefs.expertise} className="mb-20">
-          <h2 className="text-3xl font-semibold text-gray-800 mb-8">My Expertise</h2>
+          <h2 className="text-3xl font-semibold text-gray-800 mb-8">My Skills</h2>
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
             {skillsData.map((skill, index) => (
               <div key={index} className="bg-white p-6 rounded-lg shadow-md flex flex-col items-center transition duration-300 hover:shadow-lg">
