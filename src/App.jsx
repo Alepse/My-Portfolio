@@ -96,7 +96,6 @@ function App() {
             <button onClick={() => scrollToSection('about')} className="px-4 py-2 text-gray-600 hover:text-blue-600 transition duration-300">About</button>
             <button onClick={() => scrollToSection('expertise')} className="px-4 py-2 text-gray-600 hover:text-blue-600 transition duration-300">Expertise</button>
             <button onClick={() => scrollToSection('projects')} className="px-4 py-2 text-gray-600 hover:text-blue-600 transition duration-300">Projects</button>
-            <button onClick={() => scrollToSection('demo')} className="px-4 py-2 text-gray-600 hover:text-blue-600 transition duration-300">Demo</button>
           </nav>
         </div>
       </header>
@@ -164,8 +163,7 @@ function App() {
           </div>
         </section>
 
-        <section id="demo" ref={sectionRefs.demo} className="mb-20">
-          <h2 className="text-3xl font-semibold text-gray-800 mb-8">Demo</h2>
+        <section className="mb-20">
           <div className="bg-white rounded-lg shadow-md overflow-hidden">
             <div className="p-6">
               <h3 className="text-2xl font-semibold mb-4">RabaSorsogon</h3>
@@ -183,7 +181,7 @@ function App() {
                 ))}
               </div>
               <p className="text-gray-600 mt-6 text-lg">
-                This project is a capstone curriculum project still in progress. It's a tourism website platform called RabaSorsogon, where I've utilized React.js, Tailwind CSS, shadcn, and Next UI libraries to enhance the user experience. The platform is inspired by websites like Agoda, TripAdvisor, and Airbnb. It also features a Facebook-like business page editor, allowing business owners to manage their listings.
+                This project is a capstone curriculum project still in progress. It's a tourism website platform called RabaSorsogon, this website is developedfor the Sorsogon Province to promote tourism in Sorsogon province , where I've utilized React.js, Tailwind CSS, shadcn, and Next UI libraries to enhance the user experience. The platform is inspired by websites like Agoda, TripAdvisor, and Airbnb. It also features a Facebook-like business page editor, allowing business owners to manage their listings.
               </p>
             </div>
           </div>
