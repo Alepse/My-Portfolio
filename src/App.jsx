@@ -166,12 +166,12 @@ function App() {
         <section className="mb-20">
           <div className="bg-white rounded-lg shadow-md overflow-hidden">
             <div className="p-6">
-              <h3 className="text-2xl font-semibold mb-4">RabaSorsogon</h3>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <h3 className="text-4xl font-semibold mb-4 text-center">RabaSorsogon</h3>
+              <div className="grid grid-cols-1  gap-6">
                 {files.filter(file => file.type.startsWith('video/')).map((file, index) => (
                   <div key={index} className="rounded-lg overflow-hidden shadow-md">
                     <video 
-                      className="w-full h-48 object-cover"
+                      className="w-full h-[700px] object-cover object-center"
                       src={file.url} 
                       controls
                     >
@@ -181,11 +181,11 @@ function App() {
                 ))}
               </div>
               <p className="text-gray-600 mt-6 text-lg">
-                This project is a capstone curriculum project still in progress. It's a tourism website platform called RabaSorsogon, this website is developedfor the Sorsogon Province to promote tourism in Sorsogon province , where I've utilized React.js, Tailwind CSS, shadcn, and Next UI libraries to enhance the user experience. The platform is inspired by websites like Agoda, TripAdvisor, and Airbnb. It also features a Facebook-like business page editor, allowing business owners to manage their listings.
+                This project is a capstone curriculum project. It's a tourism website platform called RabaSorsogon, this website is developedfor the Sorsogon Province to promote tourism in Sorsogon province , where I've utilized React.js, Tailwind CSS, shadcn, and Next UI libraries to enhance the user experience. The platform is inspired by websites like Agoda, TripAdvisor, and Airbnb. It also features a Facebook-like business page editor, allowing business owners to manage their listings.
               </p>
             </div>
           </div>
-        </section>
+        </section> 
       </main>
 
       <footer className="bg-gray-800 text-white py-8">
