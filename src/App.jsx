@@ -4,7 +4,7 @@ import { ref, getDownloadURL, listAll, getMetadata } from 'firebase/storage'
 import Profile from '../src/assets/profile.jpg'
 import { CiLink } from "react-icons/ci"
 import { FiDownload } from "react-icons/fi";
-import Resume from '/Kenneth Espela_Resume.pdf'
+import Resume from '/public/Kenneth L. Espela_Resume.pdf'
 
 const skillsData = [
   { name: 'HTML', icon: 'https://cdn.jsdelivr.net/npm/simple-icons@v7/icons/html5.svg' },
