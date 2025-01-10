@@ -113,7 +113,7 @@ function App() {
             Projects
           </button>
           <a
-            href="/public/Kenneth Espela_CV Resume.docx"
+            href="/public/Kenneth Espela_Resume.pdf"
             download
             className="px-4 py-2 bg-blue-600 text-white flex items-center gap-2 rounded-lg hover:bg-blue-700 transition duration-300"
           >
@@ -177,7 +177,7 @@ function App() {
                   <p className="text-gray-600 mb-4">{project.description}</p>
                 </div>
                 <div className="flex items-center gap-2 mt-4">
-                  <span className="text-blue-600 font-semibold">View Project</span>
+                  <span className="text-gray-800 font-semibold">View Project</span>
                   <a href={project.link} className="text-3xl text-blue-600 hover:text-blue-800 transition duration-300" target="_blank" rel="noopener noreferrer">
                     <CiLink />
                   </a>
