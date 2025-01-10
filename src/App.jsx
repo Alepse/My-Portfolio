@@ -7,13 +7,15 @@ import { FiDownload } from "react-icons/fi";
 import Resume from '/public/Kenneth L. Espela_Resume.pdf'
 
 const skillsData = [
-  { name: 'HTML', icon: 'https://cdn.jsdelivr.net/npm/simple-icons@v7/icons/html5.svg' },
-  { name: 'CSS', icon: 'https://cdn.jsdelivr.net/npm/simple-icons@v7/icons/css3.svg' },
-  { name: 'Tailwind CSS', icon: 'https://cdn.jsdelivr.net/npm/simple-icons@v7/icons/tailwindcss.svg' },
-  { name: 'JavaScript', icon: 'https://cdn.jsdelivr.net/npm/simple-icons@v7/icons/javascript.svg' },
-  { name: 'React.js', icon: 'https://cdn.jsdelivr.net/npm/simple-icons@v7/icons/react.svg' },
-  { name: 'shadcn', icon: 'https://cdn.jsdelivr.net/npm/simple-icons@v7/icons/vercel.svg' },
-  { name: 'Next UI', icon: 'UI' },
+  { name: 'HTML', icon: 'https://cdn.jsdelivr.net/npm/simple-icons@v7/icons/html5.svg' },  
+  { name: 'CSS', icon: 'https://cdn.jsdelivr.net/npm/simple-icons@v7/icons/css3.svg' },  
+  { name: 'Tailwind CSS', icon: 'https://cdn.jsdelivr.net/npm/simple-icons@v7/icons/tailwindcss.svg' },  
+  { name: 'JavaScript', icon: 'https://cdn.jsdelivr.net/npm/simple-icons@v7/icons/javascript.svg' },  
+  { name: 'React.js', icon: 'https://cdn.jsdelivr.net/npm/simple-icons@v7/icons/react.svg' },  
+  { name: 'shadcn', icon: 'https://cdn.jsdelivr.net/npm/simple-icons@v7/icons/vercel.svg' },  
+  { name: 'Next UI', icon: 'UI' },  
+  { name: 'Laravel', icon: 'https://cdn.jsdelivr.net/npm/simple-icons@v7/icons/laravel.svg' },  
+  { name: 'PHP', icon: 'https://cdn.jsdelivr.net/npm/simple-icons@v7/icons/php.svg' }
 ]
 
 function App() {
@@ -192,25 +194,54 @@ function App() {
           <div className="bg-white rounded-lg shadow-md overflow-hidden">
             <div className="p-6">
               <h3 className="text-4xl font-semibold mb-4 text-center">RabaSorsogon</h3>
-              <div className="grid grid-cols-1  gap-6">
-                {files.filter(file => file.type.startsWith('video/')).map((file, index) => (
-                  <div key={index} className="rounded-lg overflow-hidden shadow-md">
-                    <video 
-                      className="w-full h-[700px] object-cover object-center"
-                      src={file.url} 
-                      controls
-                    >
-                      Your browser does not support the video tag.
-                    </video>
-                  </div>
-                ))}
+              <div className="grid grid-cols-1 gap-6">
+                {files
+                  .filter(file => file.name === "Rabasorsogon.mp4") // Replace with your video file name
+                  .map((file, index) => (
+                    <div key={index} className="rounded-lg overflow-hidden shadow-md">
+                      <video
+                        className="w-full h-[700px] object-cover object-center"
+                        src={file.url}
+                        controls
+                      >
+                        Your browser does not support the video tag.
+                      </video>
+                    </div>
+                  ))}
               </div>
               <p className="text-gray-600 mt-6 text-lg">
-                This project is a capstone curriculum project. It's a tourism website platform called RabaSorsogon, this website is developedfor the Sorsogon Province to promote tourism in Sorsogon province , where I've utilized React.js, Tailwind CSS, shadcn, and Next UI libraries to enhance the user experience. The platform is inspired by websites like Agoda, TripAdvisor, and Airbnb. It also features a Facebook-like business page editor, allowing business owners to manage their listings.
+                This project is a capstone curriculum project. It's a tourism website platform called RabaSorsogon, developed for the Sorsogon Province to promote tourism in the region. It utilizes React.js, Tailwind CSS, shadcn, and Next UI libraries to enhance the user experience. The platform is inspired by websites like Agoda, TripAdvisor, and Airbnb. It also features a Facebook-like business page editor, allowing business owners to manage their listings.
               </p>
             </div>
           </div>
-        </section> 
+        </section>
+        
+        <section className="mb-20">
+          <div className="bg-white rounded-lg shadow-md overflow-hidden">
+            <div className="p-6">
+              <h3 className="text-4xl font-semibold mb-4 text-center">The Latte Lane</h3>
+              <div className="grid grid-cols-1 gap-6">
+                {files
+                  .filter(file => file.name === "TheLatteLane.mp4") // Replace with your video file name
+                  .map((file, index) => (
+                    <div key={index} className="rounded-lg overflow-hidden shadow-md">
+                      <video
+                        className="w-full h-[700px] object-cover object-center"
+                        src={file.url}
+                        controls
+                      >
+                        Your browser does not support the video tag.
+                      </video>
+                    </div>
+                  ))}
+              </div>
+              <p className="text-gray-600 mt-6 text-lg">
+                This Project is an E-commerce cafe website project. It was a project for my Web Development curriculum. It is a FullStack project that I made using Laravel with crud functionality.I used bootstrap for the frontend and Laravel Php for backend and with Database support using Mysql
+              </p>
+            </div>
+          </div>
+        </section>
+
       </main>
 
       <footer className="bg-gray-800 text-white py-8">
