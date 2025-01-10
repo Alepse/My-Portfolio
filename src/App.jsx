@@ -4,6 +4,7 @@ import { ref, getDownloadURL, listAll, getMetadata } from 'firebase/storage'
 import Profile from '../src/assets/profile.jpg'
 import { CiLink } from "react-icons/ci"
 import { FiDownload } from "react-icons/fi";
+import Resume from '/Kenneth Espela_Resume.pdf'
 
 const skillsData = [
   { name: 'HTML', icon: 'https://cdn.jsdelivr.net/npm/simple-icons@v7/icons/html5.svg' },
@@ -113,7 +114,7 @@ function App() {
             Projects
           </button>
           <a
-            href="/public/Kenneth Espela_Resume.pdf"
+            href={Resume}
             download
             className="px-4 py-2 bg-blue-600 text-white flex items-center gap-2 rounded-lg hover:bg-blue-700 transition duration-300"
           >
