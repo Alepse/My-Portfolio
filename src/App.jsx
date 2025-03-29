@@ -31,7 +31,11 @@ function App() {
   }
 
   const scrollToSection = (sectionId) => {
-    sectionRefs[sectionId].current.scrollIntoView({ behavior: 'smooth' })
+    const offset = 80; // Adjust this value to match the height of your sticky header
+    const section = sectionRefs[sectionId].current;
+    const heading = section.querySelector('h2'); // Ensure it targets the section's heading
+    const targetPosition = heading ? heading.getBoundingClientRect().top + window.scrollY - offset : section.offsetTop - offset;
+    window.scrollTo({ top: targetPosition, behavior: 'smooth' });
   }
 
   useEffect(() => {
@@ -91,7 +95,7 @@ function App() {
   return (
     <div className="min-h-screen bg-gray-100">
       <header className="bg-white text-gray-800 py-6 sticky top-0 z-10 shadow-md">
-      <div className="container mx-auto px-4 flex flex-col md:flex-row justify-between items-center">
+      <div className="container mx-auto p-8 flex h-[2rem] flex-col md:flex-row justify-between items-center">
         <div className="mb-4 md:mb-0 text-center md:text-left">
           <h1 className="text-3xl md:text-4xl font-bold">Kenneth Espela</h1>
           <p className="text-lg md:text-xl mt-2 text-blue-600">Frontend Developer</p>
