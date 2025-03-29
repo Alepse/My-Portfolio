@@ -131,7 +131,7 @@ function App() {
         <section id="about" ref={sectionRefs.about} className="mb-20 flex flex-col md:flex-row items-center">
           <div className="w-full md:w-1/2 pr-0 md:pr-8 mb-8 md:mb-0">
             <h2 className="text-4xl md:text-5xl font-bold mb-6">Hey, I'm a <span className="text-blue-600">Frontend</span> Web Developer.</h2>
-            <p className="text-gray-600 mb-8 text-lg">I am an aspiring Frontend Developer with a solid foundation in HTML, CSS, and Tailwind CSS. I have a basic understanding of JavaScript and React.js, and I have integrated UI libraries like shadcn and Next UI to enhance user interfaces. I'm eager to grow my skills and contribute to impactful projects.</p>
+            <p className="text-gray-600 mb-8 text-lg">Aspiring front-end web developer with practical experience and a solid foundation in web development gained through my studies at Bicol University. Expected to graduate in 2025, I possess a strong understanding of front-end technologies and trends, which equips me to adapt and excel in dynamic real-world company projects.</p>
           </div>
           <div className="w-full md:w-1/2">
             <img src={Profile} alt="Kenneth Espela" className="rounded-full w-64 h-64 md:w-80 md:h-80 mx-auto object-cover shadow-lg" />
