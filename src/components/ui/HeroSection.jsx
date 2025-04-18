@@ -158,7 +158,7 @@ const HeroSection = ({ darkMode }) => {
         initial={{ opacity: 0, scale: 0.85 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.8, delay: 0.5 }}
-        className="flex-1 flex justify-center items-center z-10"
+        className="flex-1  flex justify-center items-center z-10"
       >
         <motion.div
           whileHover={{ scale: 1.04, rotate: 1, boxShadow: '0 0 32px 0 #c7d2fe, 0 0 0 4px #fff' }}
@@ -170,7 +170,7 @@ const HeroSection = ({ darkMode }) => {
           <img
             src={Profile}
             alt="Kenneth Espela profile"
-            className="w-48 h-48 sm:w-64 sm:h-64 md:w-72 md:h-72 object-cover rounded-full"
+            className="w-48 h-48 sm:w-64 sm:h-64 md:w-[420px] md:h-[420px] object-cover "
             draggable="false"
           />
         </motion.div>

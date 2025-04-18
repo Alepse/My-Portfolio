@@ -8,15 +8,13 @@ const ProjectCard = ({
   darkMode,
   expanded,
   onToggleExpand,
-  onImageHover,
-  onImageLeave,
-  onImageClick
+  onImageClick,
 }) => {
   // Find file if image exists
   const file = project.image ? files.find(f => f.name === project.image) : null;
   const ext = file ? file.name.split('.').pop().toLowerCase() : '';
-  const isVideo = ["mp4", "webm", "ogg"].includes(ext);
   const isImage = ["png", "jpg", "jpeg", "gif", "webp"].includes(ext);
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
@@ -28,31 +26,27 @@ const ProjectCard = ({
     >
       <div className="relative">
         {/* Media Preview */}
-        {file && isVideo && (
-          <motion.video
-            className="w-full h-48 sm:h-56 md:h-64 object-cover"
-            src={file.url}
-            controls
-            whileHover={{ scale: 1.04, boxShadow: '0 0 36px 6px #3b82f6' }}
-            transition={{ type: 'spring', stiffness: 160, damping: 18 }}
-          />
-        )}
-        {file && isImage && (
-          <div className="relative">
-            <motion.img
-              className="w-full h-48 sm:h-56 md:h-64 object-cover cursor-pointer transition-transform duration-200"
-              src={file.url}
-              alt={project.title}
-              onMouseEnter={onImageHover}
-              onMouseMove={onImageHover}
-              onMouseLeave={onImageLeave}
-              onClick={onImageClick}
-              whileHover={{ scale: 1.04, boxShadow: '0 0 36px 6px #3b82f6' }}
-              transition={{ type: 'spring', stiffness: 160, damping: 18 }}
+        {project.videoUrl ? (
+          <div className="relative w-full h-48 sm:h-56 md:h-64">
+            <iframe
+              src={`${project.videoUrl}?autoplay=0&rel=0&modestbranding=1`}
+              title={project.title}
+              className="absolute inset-0 w-full h-full"
+              frameBorder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
             />
           </div>
-        )}
-        {(!file || (!isVideo && !isImage)) && (
+        ) : file && isImage ? (
+          <div className="relative">
+            <img
+              className="w-full h-48 sm:h-56 md:h-64 object-cover cursor-pointer"
+              src={file.url}
+              alt={project.title}
+              onClick={() => onImageClick({ url: file.url, title: project.title })}
+            />
+          </div>
+        ) : (
           <div className={`w-full h-48 sm:h-56 md:h-64 ${darkMode ? 'bg-gray-700' : 'bg-gray-100'} flex items-center justify-center`}>
             <span className={`text-3xl sm:text-4xl ${darkMode ? 'text-gray-600' : 'text-gray-400'}`}>{project.title[0]}</span>
           </div>
@@ -176,14 +170,20 @@ TruncatableText.propTypes = {
 };
 
 ProjectCard.propTypes = {
-  project: PropTypes.object.isRequired,
+  project: PropTypes.shape({
+    title: PropTypes.string.isRequired,
+    description: PropTypes.string.isRequired,
+    tech: PropTypes.arrayOf(PropTypes.string).isRequired,
+    type: PropTypes.string.isRequired,
+    image: PropTypes.string,
+    videoUrl: PropTypes.string,
+    link: PropTypes.string
+  }).isRequired,
   files: PropTypes.array.isRequired,
   darkMode: PropTypes.bool.isRequired,
   expanded: PropTypes.bool,
   onToggleExpand: PropTypes.func,
-  onImageHover: PropTypes.func,
-  onImageLeave: PropTypes.func,
-  onImageClick: PropTypes.func
+  onImageClick: PropTypes.func,
 };
 
 export default ProjectCard;

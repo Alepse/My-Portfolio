@@ -8,11 +8,9 @@ const ProjectList = ({
   expandedDescriptions,
   setExpandedDescriptions,
   setModalImage,
-  setHoverImage,
-  setHoverPos
 }) => (
   <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-    {projects.map((project, index) => (
+    {projects.map((project) => (
       <ProjectCard
         key={project.title}
         project={project}
@@ -25,19 +23,7 @@ const ProjectList = ({
             [project.title]: !prev[project.title],
           }))
         }
-        onImageHover={e => {
-          if (!project.image) return;
-          setHoverImage({ url: files.find(f => f.name === project.image)?.url, title: project.title });
-          const rect = e.currentTarget.getBoundingClientRect();
-          setHoverPos({
-            x: (e.clientX - rect.left) / rect.width,
-            y: (e.clientY - rect.top) / rect.height,
-          });
-        }}
-        onImageLeave={() => setHoverImage(null)}
-        onImageClick={() => {
-          setModalImage({ url: files.find(f => f.name === project.image)?.url, title: project.title });
-        }}
+        onImageClick={(imageData) => setModalImage(imageData)}
       />
     ))}
   </div>
@@ -50,8 +36,6 @@ ProjectList.propTypes = {
   expandedDescriptions: PropTypes.object.isRequired,
   setExpandedDescriptions: PropTypes.func.isRequired,
   setModalImage: PropTypes.func.isRequired,
-  setHoverImage: PropTypes.func.isRequired,
-  setHoverPos: PropTypes.func.isRequired,
 };
 
 export default ProjectList;
