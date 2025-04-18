@@ -1,34 +1,176 @@
-import { useState, useEffect, useRef } from 'react'
+import { useState, useEffect, useRef, createContext, useContext } from 'react'
 import { storage } from './firebase'
 import { ref, getDownloadURL, listAll, getMetadata } from 'firebase/storage'
 import Profile from '../src/assets/profile.jpg'
 import { CiLink } from "react-icons/ci"
-import { FiDownload } from "react-icons/fi";
+import { FiDownload, FiMoon, FiSun, FiGithub, FiMail, FiLinkedin } from "react-icons/fi";
+import { motion, AnimatePresence } from "framer-motion"
+import LoaderOverlay from './components/ui/LoaderOverlay'
+import ProjectList from './components/ui/ProjectList'
+import ProjectMediaHover from './components/ui/ProjectMediaHover'
+import HeroSection from './components/ui/HeroSection'
 import Resume from '/public/Kenneth L. Espela-Resume.pdf'
 
+const ThemeContext = createContext()
+
 const skillsData = [
-  { name: 'HTML', icon: 'https://cdn.jsdelivr.net/npm/simple-icons@v7/icons/html5.svg' },  
-  { name: 'CSS', icon: 'https://cdn.jsdelivr.net/npm/simple-icons@v7/icons/css3.svg' },  
-  { name: 'Tailwind CSS', icon: 'https://cdn.jsdelivr.net/npm/simple-icons@v7/icons/tailwindcss.svg' },  
-  { name: 'JavaScript', icon: 'https://cdn.jsdelivr.net/npm/simple-icons@v7/icons/javascript.svg' },  
-  { name: 'React.js', icon: 'https://cdn.jsdelivr.net/npm/simple-icons@v7/icons/react.svg' },  
-  { name: 'shadcn', icon: 'https://cdn.jsdelivr.net/npm/simple-icons@v7/icons/vercel.svg' },  
-  { name: 'Next UI', icon: 'UI' },  
-  { name: 'Laravel', icon: 'https://cdn.jsdelivr.net/npm/simple-icons@v7/icons/laravel.svg' },  
-  { name: 'PHP', icon: 'https://cdn.jsdelivr.net/npm/simple-icons@v7/icons/php.svg' }
+  // Frontend Development
+  { name: 'HTML', icon: 'https://cdn.jsdelivr.net/npm/simple-icons@v7/icons/html5.svg', proficiency: 90, category: 'Frontend' },
+  { name: 'CSS', icon: 'https://cdn.jsdelivr.net/npm/simple-icons@v7/icons/css3.svg', proficiency: 85, category: 'Frontend' },
+  { name: 'JavaScript', icon: 'https://cdn.jsdelivr.net/npm/simple-icons@v7/icons/javascript.svg', proficiency: 75, category: 'Frontend' },
+  { name: 'TypeScript', icon: 'https://cdn.jsdelivr.net/npm/simple-icons@v7/icons/typescript.svg', proficiency: 70, category: 'Frontend' },
+  { name: 'React.js', icon: 'https://cdn.jsdelivr.net/npm/simple-icons@v7/icons/react.svg', proficiency: 75, category: 'Frontend' },
+  { name: 'Next.js', icon: 'https://cdn.jsdelivr.net/npm/simple-icons@v7/icons/nextdotjs.svg', proficiency: 70, category: 'Frontend' },
+  { name: 'Bootstrap', icon: 'https://cdn.jsdelivr.net/npm/simple-icons@v7/icons/bootstrap.svg', proficiency: 75, category: 'Frontend' },
+  { name: 'Tailwind CSS', icon: 'https://cdn.jsdelivr.net/npm/simple-icons@v7/icons/tailwindcss.svg', proficiency: 90, category: 'Frontend' },
+  
+  // Backend Development
+  { name: 'PHP', icon: 'https://cdn.jsdelivr.net/npm/simple-icons@v7/icons/php.svg', proficiency: 40, category: 'Backend' },
+  { name: 'Laravel', icon: 'https://cdn.jsdelivr.net/npm/simple-icons@v7/icons/laravel.svg', proficiency: 40, category: 'Backend' },
+  { name: 'MySQL', icon: 'https://cdn.jsdelivr.net/npm/simple-icons@v7/icons/mysql.svg', proficiency: 50, category: 'Backend' },
+  { name: 'Firebase', icon: 'https://cdn.jsdelivr.net/npm/simple-icons@v7/icons/firebase.svg', proficiency: 50, category: 'Backend' },
+
+  // UI/UX Design
+  { name: 'Figma', icon: 'https://cdn.jsdelivr.net/npm/simple-icons@v7/icons/figma.svg', proficiency: 75, category: 'Design' },
+  { name: 'UI Design', icon: 'https://cdn.jsdelivr.net/npm/simple-icons@v7/icons/adobexd.svg', proficiency: 70, category: 'Design' },
+  { name: 'UX Design', icon: 'https://cdn.jsdelivr.net/npm/simple-icons@v7/icons/sketch.svg', proficiency: 70, category: 'Design' },
+
+  // Development Tools
+  { name: 'Git', icon: 'https://cdn.jsdelivr.net/npm/simple-icons@v7/icons/git.svg', proficiency: 85, category: 'Tools' },
+  { name: 'GitHub', icon: 'https://cdn.jsdelivr.net/npm/simple-icons@v7/icons/github.svg', proficiency: 85, category: 'Tools' },
+  { name: 'Netlify', icon: 'https://cdn.jsdelivr.net/npm/simple-icons@v7/icons/netlify.svg', proficiency: 80, category: 'Tools' },
+  { name: 'Vercel', icon: 'https://cdn.jsdelivr.net/npm/simple-icons@v7/icons/vercel.svg', proficiency: 70, category: 'Tools' },
+  { name: 'Vite', icon: 'https://cdn.jsdelivr.net/npm/simple-icons@v7/icons/vite.svg', proficiency: 75, category: 'Tools' }
+]
+
+const projectsData = [
+  {
+    title: "The Latte Lane",
+    description: "An e-commerce cafe website with booking appointment, crud operations and ordering system.",
+    tech: ["Laravel", "PHP", "MySQL", "Bootstrap"],
+    type: "Full-Stack",
+    image: "TheLatteLane.mp4"
+  },
+  {
+    title: "Inventory Manager",
+    description: "A simple inventory management system that allows users to add, update, and delete inventory items.",
+    tech: ["Laravel", "PHP", "MySQL", "Bootstrap"],
+    type: "Full-Stack",
+    image: "Inventory Manager.mp4"
+
+  },
+  {
+    title: "Payl",
+    link: "https://ias2-f7656.web.app/",
+    description: "A file management system that incorporates basic security features like encryption standards and CRUD operations for managing files.",
+    tech: ["Firebase", "React.js", "Tailwind CSS","Javascript"],
+    type: "Full-Stack",
+    image: "payl.png"
+  },
+  {
+    title: "Spa-ntaneous",
+    link: "https://spantaneous.netlify.app/",
+    description: "An e-commerce spa services website with modern design and booking functionality.",
+    tech: ["React.js", "Tailwind CSS", "MySQL","Javascript"],
+    type: "Frontend",
+    image: "spa.png"
+  },
+  {
+    title: "Internship Blog",
+    link: "https://blog-internship-6gvhrqdwu-kenneths-projects-11162f96.vercel.app/",
+    description: "A blog website for my documentation of my internship experience in a government agency, Department of Science and Technology Region 5 (DOST-V).",
+    tech: ["React.js", "Tailwind CSS","Javascript"],
+    type: "Frontend",
+    image: "blog.png"
+  },
+  {
+    title: "Syncko",
+    description: "This is a knowledge sharing platform that allows employees to share their knowledge and expertise with other employees throughout the agency Department of Science and Technology Region 5 (DOST-V). This is a required project for my internship in DOST-V.",
+    tech: ["Next.js","Tailwind CSS","TypeScript","Chart.js","Shadcn"],
+    type: "Frontend",
+    image: "Syncko.mp4"
+  },
+  {
+    title: "Basic Portfolio Website ",
+    link: "https://alepse.netlify.app/",
+    description: "This is my first personal website, created during my second year of college. Within this portfolio, you can explore a collection of my early programming projects.",
+    tech: ["HTML", "CSS", "JavaScript"],
+    type: "Frontend",
+    image: "portfolio.png"
+  },
+  {
+    title: "Rabasorsogon",
+
+    description: "A tourism website designed to enhance user experience with key features including a trip planning, an integrated chat system for real-time communication, and a booking system.",
+    tech: ["React.js", "Tailwind CSS", "JavaScript", "Redux", "Shadcn","NextUI","Framer Motion","Node.js","MySQL"],
+    type: "Frontend",
+    image: "Rabasorsogon.mp4"
+  }
 ]
 
 function App() {
   const [files, setFiles] = useState([])
-  const [loading, setLoading] = useState(true)
+  const [loading, setLoading] = useState(false)
   const [error, setError] = useState(null)
+  const [darkMode, setDarkMode] = useState(false)
+  const [isVisible, setIsVisible] = useState({
+    about: true,
+    expertise: false,
+    projects: false,
+    contact: false
+  })
+  const [activeCategory, setActiveCategory] = useState('All')
+  const [initialLoading, setInitialLoading] = useState(false)
+  const [modalImage, setModalImage] = useState(null);
+  const [hoverImage, setHoverImage] = useState(null);
+  const [hoverPos, setHoverPos] = useState({ x: 0.5, y: 0.5 });
+  const [expandedDescriptions, setExpandedDescriptions] = useState({});
 
   const sectionRefs = {
     about: useRef(null),
     expertise: useRef(null),
     projects: useRef(null),
-    demo: useRef(null),
+    contact: useRef(null),
   }
+
+  useEffect(() => {
+    // Simulate initial loading
+    const timer = setTimeout(() => {
+      setInitialLoading(false)
+    }, 2000)
+
+    return () => clearTimeout(timer)
+  }, [])
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          setIsVisible(prev => ({
+            ...prev,
+            [entry.target.id]: entry.isIntersecting
+          }))
+        })
+      },
+      { threshold: 0.1 }
+    )
+
+    Object.values(sectionRefs).forEach(ref => {
+      if (ref.current) {
+        observer.observe(ref.current)
+      }
+    })
+
+    return () => observer.disconnect()
+  }, [])
+
+  useEffect(() => {
+    if (darkMode) {
+      document.documentElement.classList.add('dark')
+    } else {
+      document.documentElement.classList.remove('dark')
+    }
+  }, [darkMode])
 
   const scrollToSection = (sectionId) => {
     const offset = 80; // Adjust this value to match the height of your sticky header
@@ -52,209 +194,372 @@ function App() {
   useEffect(() => {
     const fetchFiles = async () => {
       try {
-        setLoading(true)
         const storageRef = ref(storage, 'files')
         const result = await listAll(storageRef)
         
         const fileList = await Promise.all(result.items.map(async (itemRef) => {
-          const url = await getDownloadURL(itemRef)
-          const metadata = await getMetadata(itemRef)
-          return {
-            name: itemRef.name,
-            size: metadata.size,
-            type: metadata.contentType,
-            lastModified: metadata.updated,
-            url: url
+          try {
+            const url = await getDownloadURL(itemRef)
+            const metadata = await getMetadata(itemRef)
+            return {
+              name: itemRef.name,
+              size: metadata.size,
+              type: metadata.contentType,
+              lastModified: metadata.updated,
+              url: url
+            }
+          } catch (error) {
+            console.warn(`Failed to load file ${itemRef.name}:`, error)
+            return null
           }
         }))
         
-        setFiles(fileList)
+        setFiles(fileList.filter(file => file !== null))
       } catch (err) {
         console.error("Error fetching files:", err)
-        setError("Failed to load files. Please try again later.")
-      } finally {
-        setLoading(false)
+        setFiles([])
       }
+      setLoading(false)
     }
 
     fetchFiles()
   }, [])
 
+  if (initialLoading) {
+    return <LoaderOverlay darkMode={darkMode} />;
+  }
   if (loading) {
-    return <div className="min-h-screen flex items-center justify-center bg-gray-100">
-      <div className="animate-spin rounded-full h-32 w-32 border-t-2 border-b-2 border-blue-500"></div>
-    </div>
+    return <LoaderOverlay darkMode={darkMode} />;
   }
 
   if (error) {
-    return <div className="min-h-screen flex items-center justify-center bg-gray-100">
-      <p className="text-xl font-semibold text-red-500">{error}</p>
-    </div>
+    return (
+      <div className={`min-h-screen flex items-center justify-center ${
+        darkMode ? 'bg-gray-900' : 'bg-gray-50'
+      }`}>
+        <motion.p 
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="text-xl font-semibold text-red-500"
+        >
+          {error}
+        </motion.p>
+      </div>
+    )
   }
 
   return (
-    <div className="min-h-screen bg-gray-100">
-      <header className="bg-white text-gray-800 py-6 sticky top-0 z-10 shadow-md">
-      <div className="container mx-auto p-8 flex h-[2rem] flex-col md:flex-row justify-between items-center">
-        <div className="mb-4 md:mb-0 text-center md:text-left">
-          <h1 className="text-3xl md:text-4xl font-bold">Kenneth Espela</h1>
-          <p className="text-lg md:text-xl mt-2 text-blue-600">Frontend Developer</p>
+    <ThemeContext.Provider value={{ darkMode, setDarkMode }}>
+      {/* Image Modal */}
+      {modalImage && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-70" onClick={() => setModalImage(null)}>
+          <div className="relative max-w-3xl w-full mx-4" onClick={e => e.stopPropagation()}>
+            <img
+              src={modalImage.url}
+              alt={modalImage.title}
+              className="w-full max-h-[80vh] object-contain rounded-lg shadow-2xl border-4 border-white"
+            />
+            <button
+              onClick={() => setModalImage(null)}
+              className="absolute top-2 right-2 bg-white bg-opacity-80 hover:bg-opacity-100 text-gray-800 rounded-full p-2 shadow"
+              aria-label="Close image preview"
+            >
+              &#10005;
+            </button>
+          </div>
         </div>
-        <nav className="flex flex-wrap justify-center md:justify-end items-center space-x-4">
+      )}
+      {/* Image Hover Popout */}
+      <ProjectMediaHover hoverImage={hoverImage} hoverPos={hoverPos} onClose={() => setHoverImage(null)} />
+
+      <div className={`min-h-screen transition-all  duration-300 ${darkMode ? 'bg-gray-900 text-white ' : 'bg-[#F5F7F8] text-gray-900'}`}>
+        <div className=" mx-auto px-16">
+        {/* Floating Navigation */}
+        <div className='flex justify-center py-5'>
+        <motion.nav 
+          initial={{ y: -100 }}
+          animate={{ y: 0 }}
+          className={`fixed   z-50 px-6 py-3 rounded-full ${
+            darkMode ? 'bg-gray-800/90 backdrop-blur-sm' : 'bg-white/90 backdrop-blur-sm'
+          } shadow-lg flex items-center space-x-6`}
+        >
           <button
-            onClick={() => scrollToSection("about")}
-            className="px-4 py-2 text-gray-600 hover:text-blue-600 transition duration-300"
+            onClick={() => setDarkMode(!darkMode)}
+            className={`p-2 rounded-full transition-colors duration-300 ${
+              darkMode ? 'hover:bg-gray-700' : 'hover:bg-gray-100'
+            }`}
           >
-            About
+            {darkMode ? <FiSun className="text-xl" /> : <FiMoon className="text-xl" />}
           </button>
-          <button
-            onClick={() => scrollToSection("expertise")}
-            className="px-4 py-2 text-gray-600 hover:text-blue-600 transition duration-300"
-          >
-            Skills
-          </button>
-          <button
-            onClick={() => scrollToSection("projects")}
-            className="px-4 py-2 text-gray-600 hover:text-blue-600 transition duration-300"
-          >
-            Projects
-          </button>
+          {Object.keys(sectionRefs).map((section) => (
+            <button
+              key={section}
+              onClick={() => scrollToSection(section)}
+              className={`capitalize text-sm font-medium transition-colors duration-300 ${
+                darkMode ? 'hover:text-blue-400' : 'hover:text-blue-600'
+              }`}
+            >
+              {section}
+            </button>
+          ))}
           <a
             href={Resume}
             download
-            className="px-4 py-2 bg-blue-600 text-white flex items-center gap-2 rounded-lg hover:bg-blue-700 transition duration-300"
+            className={`px-4 py-2 rounded-full flex items-center gap-2 transition-colors duration-300 ${
+              darkMode 
+                ? 'bg-blue-500 hover:bg-blue-600 text-white' 
+                : 'bg-blue-600 hover:bg-blue-700 text-white'
+            }`}
           >
-            <FiDownload className="text-lg" />
-            Download CV
+            <FiDownload className="text-sm" />
+            <span className="text-sm">Resume</span>
           </a>
-        </nav>
-      </div>
-    </header>
-
-      <main className="container mx-auto px-4 py-16">
-        <section id="about" ref={sectionRefs.about} className="mb-20 flex flex-col md:flex-row items-center">
-          <div className="w-full md:w-1/2 pr-0 md:pr-8 mb-8 md:mb-0">
-            <h2 className="text-4xl md:text-5xl font-bold mb-6">Hey, I'm a <span className="text-blue-600">Frontend</span> Web Developer.</h2>
-            <p className="text-gray-600 mb-8 text-lg">Aspiring front-end web developer with practical experience and a solid foundation in web development gained through my studies at Bicol University. Expected to graduate in 2025, I possess a strong understanding of front-end technologies and trends, which equips me to adapt and excel in dynamic real-world company projects.</p>
-          </div>
-          <div className="w-full md:w-1/2">
-            <img src={Profile} alt="Kenneth Espela" className="rounded-full w-64 h-64 md:w-80 md:h-80 mx-auto object-cover shadow-lg" />
-          </div>
-        </section>
-
-        <section id="expertise" ref={sectionRefs.expertise} className="mb-20">
-          <h2 className="text-3xl font-semibold text-gray-800 mb-8">My Skills</h2>
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-            {skillsData.map((skill, index) => (
-              <div key={index} className="bg-white p-6 rounded-lg shadow-md flex flex-col items-center transition duration-300 hover:shadow-lg">
-                {typeof skill.icon === 'string' && skill.icon.startsWith('http') ? (
-                  <img src={skill.icon} alt={`${skill.name} icon`} className="w-16 h-16 mb-4" style={{filter: 'invert(0.5)'}} />
-                ) : (
-                  <div className="w-16 h-16 mb-4 flex items-center justify-center text-4xl font-bold text-gray-600">{skill.icon}</div>
-                )}
-                <h3 className="text-xl font-semibold text-center">{skill.name}</h3>
-              </div>
-            ))}
-          </div>
-        </section>
-
-        <section id="projects" ref={sectionRefs.projects} className="mb-20">
-          <h2 className="text-3xl font-semibold text-gray-800 mb-8">Projects</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {[
-              {
-                title: "Payl",
-                link: "https://ias2-f7656.web.app/",
-                description: "This website is a file management system I created during my 3rd year of college, with some security features. You can create a dummy account to explore the entire UI. Tools used: React.js, Tailwind CSS, and Firebase."
-              },
-              {
-                title: "Alepse Portfolio (1st version)",
-                link: "https://alepse.netlify.app/",
-                description: "This portfolio website was created during my 2nd year of college. I used HTML, CSS, and JavaScript in this project. You can also view my other projects from my 1st and 2nd years of college here."
-              },
-              {
-                title: "Spa-ntaneous",
-                link: "https://spantaneous.netlify.app/",
-                description: "This is an e-commerce platform website featuring booking services. It was a project for my E-commerce curriculum. I used React.js and Tailwind CSS for the frontend."
-              }
-            ].map((project, index) => (
-              <div key={index} className="bg-white rounded-lg shadow-md p-6 flex flex-col justify-between transition duration-300 hover:shadow-xl">
-                <div>
-                  <h3 className="text-xl font-semibold mb-2">{project.title}</h3>
-                  <p className="text-gray-600 mb-4">{project.description}</p>
-                </div>
-                <div className="flex items-center gap-2 mt-4">
-                  <span className="text-gray-800 font-semibold">View Project</span>
-                  <a href={project.link} className="text-3xl text-blue-600 hover:text-blue-800 transition duration-300" target="_blank" rel="noopener noreferrer">
-                    <CiLink />
-                  </a>
-                </div>
-              </div>
-            ))}
-          </div>
-        </section>
-
-        <section className="mb-20">
-          <div className="bg-white rounded-lg shadow-md overflow-hidden">
-            <div className="p-6">
-              <h3 className="text-4xl font-semibold mb-4 text-center">RabaSorsogon</h3>
-              <div className="grid grid-cols-1 gap-6">
-                {files
-                  .filter(file => file.name === "Rabasorsogon.mp4") // Replace with your video file name
-                  .map((file, index) => (
-                    <div key={index} className="rounded-lg overflow-hidden shadow-md">
-                      <video
-                        className="w-full h-[700px] object-cover object-center"
-                        src={file.url}
-                        controls
-                      >
-                        Your browser does not support the video tag.
-                      </video>
-                    </div>
-                  ))}
-              </div>
-              <p className="text-gray-600 mt-6 text-lg">
-                This project is a capstone curriculum project. It's a tourism website platform called RabaSorsogon, developed for the Sorsogon Province to promote tourism in the region. It utilizes React.js, Tailwind CSS, shadcn, and Next UI libraries to enhance the user experience. The platform is inspired by websites like Agoda, TripAdvisor, and Airbnb. It also features a Facebook-like business page editor, allowing business owners to manage their listings.
-              </p>
-            </div>
-          </div>
-        </section>
-        
-        <section className="mb-20">
-          <div className="bg-white rounded-lg shadow-md overflow-hidden">
-            <div className="p-6">
-              <h3 className="text-4xl font-semibold mb-4 text-center">The Latte Lane</h3>
-              <div className="grid grid-cols-1 gap-6">
-                {files
-                  .filter(file => file.name === "TheLatteLane.mp4") // Replace with your video file name
-                  .map((file, index) => (
-                    <div key={index} className="rounded-lg overflow-hidden shadow-md">
-                      <video
-                        className="w-full h-[700px] object-cover object-center"
-                        src={file.url}
-                        controls
-                      >
-                        Your browser does not support the video tag.
-                      </video>
-                    </div>
-                  ))}
-              </div>
-              <p className="text-gray-600 mt-6 text-lg">
-                This Project is an E-commerce cafe website project. It was a project for my Web Development curriculum. It is a FullStack project that I made using Laravel with crud functionality.I used bootstrap for the frontend and Laravel Php for backend and with Database support using Mysql
-              </p>
-            </div>
-          </div>
-        </section>
-
-      </main>
-
-      <footer className="bg-gray-800 text-white py-8">
-        <div className="container mx-auto px-4 text-center">
-          <p className="text-lg mb-2">Contact: kenespela@gmail.com</p>
-          <p className="text-sm text-gray-400">&copy; 2023 Kenneth Espela. All rights reserved.</p>
+        </motion.nav>
         </div>
-      </footer>
-    </div>
+
+        <main className="container w-full mx-auto px-4 ">
+          {/* Hero Section */}
+          <motion.section
+            id="about"
+            ref={sectionRefs.about}
+            initial={{ opacity: 0 }}
+            animate={isVisible.about ? { opacity: 1 } : {}}
+            transition={{ duration: 0.5 }}
+            className="min-h-screen flex flex-col md:flex-row items-center justify-center gap-12 mb-32"
+          >
+            <HeroSection darkMode={darkMode} />
+          </motion.section>
+
+          {/* Skills Section */}
+          <motion.section
+            id="expertise"
+            ref={sectionRefs.expertise}
+            initial={{ opacity: 0 }}
+            animate={isVisible.expertise ? { opacity: 1 } : {}}
+            transition={{ duration: 0.5 }}
+            className="mb-32"
+          >
+            <div className="text-center mb-12">
+              <motion.h2 
+                initial={{ y: 20 }}
+                animate={{ y: 0 }}
+                className="text-4xl font-bold mb-4"
+              >
+                Skills & Expertise
+              </motion.h2>
+              <motion.p 
+                initial={{ y: 20, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                transition={{ delay: 0.2 }}
+                className={`text-lg ${darkMode ? 'text-gray-300' : 'text-gray-600'}`}
+              >
+                Technologies and tools I work with
+              </motion.p>
+            </div>
+
+            <div className="flex justify-center gap-4 mb-8 flex-wrap">
+              {['All', 'Frontend', 'Backend', 'Design', 'Tools'].map((category) => (
+                <motion.button
+                  key={category}
+                  onClick={() => setActiveCategory(category)}
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  className={`px-6 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
+                    activeCategory === category
+                      ? darkMode 
+                        ? 'bg-blue-500 text-white shadow-lg shadow-blue-500/50'
+                        : 'bg-blue-600 text-white shadow-lg shadow-blue-600/50'
+                      : darkMode
+                        ? 'bg-gray-800 hover:bg-gray-700'
+                        : 'bg-gray-100 hover:bg-gray-200'
+                  }`}
+                >
+                  {category}
+                </motion.button>
+              ))}
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+              <AnimatePresence mode="wait">
+                {skillsData
+                  .filter(skill => activeCategory === 'All' || skill.category === activeCategory)
+                  .map((skill, index) => (
+                    <motion.div
+                      key={skill.name}
+                      layout
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: -20 }}
+                      transition={{ duration: 0.3, delay: index * 0.1 }}
+                      className={`${
+                        darkMode ? 'bg-gray-800' : 'bg-white'
+                      } p-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300`}
+                    >
+                      <div className="flex items-center gap-4 mb-4">
+                        <div className={`p-3 rounded-lg ${
+                          darkMode ? 'bg-gray-700' : 'bg-gray-100'
+                        }`}>
+                          <img
+                            src={skill.icon}
+                            alt={`${skill.name} icon`}
+                            className="w-8 h-8"
+                            style={{ filter: darkMode ? 'invert(1)' : 'invert(0.5)' }}
+                          />
+                        </div>
+                        <div>
+                          <h3 className="text-lg font-semibold">{skill.name}</h3>
+                          <span className={`text-sm ${
+                            darkMode ? 'text-gray-400' : 'text-gray-500'
+                          }`}>
+                            {skill.category}
+                          </span>
+                        </div>
+                      </div>
+                      <div className="space-y-2">
+                        <div className="flex justify-between items-center">
+                          <span className={`text-sm font-medium ${
+                            darkMode ? 'text-gray-300' : 'text-gray-600'
+                          }`}>
+                            Proficiency
+                          </span>
+                          <span className={`text-sm ${
+                            darkMode ? 'text-blue-400' : 'text-blue-600'
+                          }`}>
+                            {skill.proficiency}%
+                          </span>
+                        </div>
+                        <div className="w-full bg-gray-200 rounded-full h-2 dark:bg-gray-700">
+                          <motion.div
+                            className={`h-2 rounded-full ${
+                              darkMode 
+                                ? 'bg-gradient-to-r from-blue-500 to-blue-400' 
+                                : 'bg-gradient-to-r from-blue-600 to-blue-500'
+                            }`}
+                            initial={{ width: 0 }}
+                            animate={{ width: `${skill.proficiency}%` }}
+                            transition={{ duration: 1, delay: index * 0.1 }}
+                          />
+                        </div>
+                      </div>
+                    </motion.div>
+                  ))}
+              </AnimatePresence>
+            </div>
+          </motion.section>
+
+          {/* Projects Section */}
+          <motion.section
+            id="projects"
+            ref={sectionRefs.projects}
+            initial={{ opacity: 0 }}
+            animate={isVisible.projects ? { opacity: 1 } : {}}
+            transition={{ duration: 0.5 }}
+            className="mb-32"
+          >
+            <div className="text-center mb-12">
+              <motion.h2 
+                initial={{ y: 20 }}
+                animate={{ y: 0 }}
+                className="text-4xl font-bold mb-4"
+              >
+                Featured Projects
+              </motion.h2>
+              <motion.p 
+                initial={{ y: 20, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                transition={{ delay: 0.2 }}
+                className={`text-lg ${darkMode ? 'text-gray-300' : 'text-gray-600'}`}
+              >
+                Some of my recent work
+              </motion.p>
+            </div>
+
+            <ProjectList
+              projects={projectsData}
+              files={files}
+              darkMode={darkMode}
+              expandedDescriptions={expandedDescriptions}
+              setExpandedDescriptions={setExpandedDescriptions}
+              setModalImage={setModalImage}
+              setHoverImage={setHoverImage}
+              setHoverPos={setHoverPos}
+            />
+          </motion.section>
+
+          {/* Featured Projects Section */}
+          <motion.section className="mb-32">
+            <div className="space-y-12">
+            </div>
+          </motion.section>
+
+          {/* Contact Section */}
+          <motion.section
+            id="contact"
+            ref={sectionRefs.contact}
+            initial={{ opacity: 0 }}
+            animate={isVisible.contact ? { opacity: 1 } : {}}
+            transition={{ duration: 0.5 }}
+            className="mb-32 text-center"
+          >
+            <motion.h2 
+              initial={{ y: 20 }}
+              animate={{ y: 0 }}
+              className="text-4xl font-bold mb-4"
+            >
+              Get in Touch
+            </motion.h2>
+            <motion.p 
+              initial={{ y: 20, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              transition={{ delay: 0.2 }}
+              className={`text-lg mb-8 ${darkMode ? 'text-gray-300' : 'text-gray-600'}`}
+            >
+              Let's work together on your next project
+            </motion.p>
+            <motion.div 
+              initial={{ y: 20, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              transition={{ delay: 0.4 }}
+              className="flex justify-center items-center gap-6"
+            >
+              <a
+                href="mailto:kenespela@gmail.com"
+                className={`flex items-center gap-2 px-6 py-3 rounded-full text-white transition-colors duration-300 ${
+                  darkMode 
+                    ? 'bg-blue-500 hover:bg-blue-600' 
+                    : 'bg-blue-600 hover:bg-blue-700'
+                }`}
+              >
+                <FiMail className="text-xl" />
+                Email Me
+              </a>
+              <a
+                href="https://www.linkedin.com/in/kenneth-espela-123653180/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className={`flex items-center gap-2 px-6 py-3 rounded-full transition-colors duration-300 ${
+                  darkMode
+                    ? 'bg-gray-800 hover:bg-gray-700 text-white'
+                    : 'bg-gray-100 hover:bg-gray-200 text-gray-900'
+                }`}
+              >
+                <FiLinkedin className="text-xl" />
+                LinkedIn
+              </a>
+            </motion.div>
+          </motion.section>
+        </main>
+        </div>
+
+        <footer className={`py-8 ${darkMode ? 'bg-gray-800' : 'bg-gray-100'}`}>
+          <div className="container mx-auto px-4 text-center">
+            <p className={`text-sm ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>
+              © {new Date().getFullYear()} Kenneth Espela. All rights reserved.
+            </p>
+          </div>
+        </footer>
+      </div>
+    </ThemeContext.Provider>
   )
 }
 
