@@ -75,7 +75,7 @@ const projectsData = [
   },
   {
     title: "Internship Blog",
-    link: "https://blog-internship.vercel.app/",
+    link: "https://blog-wfg8.vercel.app/",
     description: "A blog website for my documentation of my internship experience in a government agency, Department of Science and Technology Region 5 (DOST-V).",
     tech: ["React.js", "Tailwind CSS","Javascript"],
     type: "Frontend",
