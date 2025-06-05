@@ -84,9 +84,9 @@ const projectsData = [
   {
     title: "Syncko",
     description: "This is a knowledge sharing platform that allows employees to share their knowledge and expertise with other employees throughout the agency Department of Science and Technology Region 5 (DOST-V). This is a required project for my internship in DOST-V.",
-    tech: ["Next.js","Tailwind CSS","TypeScript","Chart.js","Shadcn"],
+    tech: ["Next.js","PostgreSQL","Prisma","Tailwind CSS","TypeScript","Chart.js","Shadcn"],
     type: "Frontend",
-    videoUrl: "https://www.youtube.com/embed/ktRCxJcRuFQ",
+    videoUrl: "https://youtu.be/NSxgBuGNPpM",
     image: "syncko-thumbnail.png"
   },
   {

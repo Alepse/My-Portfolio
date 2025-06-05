@@ -60,16 +60,6 @@ const ProjectCard = ({
         >
           Role: {project.type}
         </motion.div>
-        {/* In Development label */}
-        {(project.title === "Internship Blog" || project.title === "Syncko") && (
-          <motion.div
-            className="absolute top-3 sm:top-4 left-3 sm:left-4 px-2 sm:px-3 py-1 rounded-full text-xs font-bold bg-orange-100 text-orange-700 shadow z-20 border border-orange-200"
-            animate={{ scale: [1, 1.08, 1], boxShadow: ['0 0 0px 0px #fcd34d','0 0 12px 4px #fde68a','0 0 0px 0px #fcd34d'] }}
-            transition={{ duration: 2.2, repeat: Infinity, ease: 'easeInOut' }}
-          >
-            In Development
-          </motion.div>
-        )}
       </div>
       <div className="p-4 sm:p-6">
         <h3 className="text-xl sm:text-2xl font-bold mb-2 group-hover:text-blue-500 transition-colors duration-300 tracking-tight">
