@@ -86,7 +86,7 @@ const projectsData = [
     description: "This is a knowledge sharing platform that allows employees to share their knowledge and expertise with other employees throughout the agency Department of Science and Technology Region 5 (DOST-V). This is a required project for my internship in DOST-V.",
     tech: ["Next.js","PostgreSQL","Prisma","Tailwind CSS","TypeScript","Chart.js","Shadcn"],
     type: "Frontend",
-    videoUrl: "https://youtu.be/NSxgBuGNPpM",
+    videoUrl: "https://www.youtube.com/embed/NSxgBuGNPpM",
     image: "syncko-thumbnail.png"
   },
   {
