@@ -2,10 +2,10 @@ import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FiMail, FiGithub, FiLinkedin } from 'react-icons/fi';
 import PropTypes from 'prop-types';
-import Profile from '../../assets/profile.jpg'
+import Profile from '../../assets/Espela.jpg'
 
 const roles = [
-  'Frontend Developer',
+  'Web Developer',
   'UI/UX Enthusiast',
   'Open to Work',
 ];

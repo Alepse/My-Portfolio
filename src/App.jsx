@@ -1,12 +1,12 @@
 import { useState, useEffect, useRef, createContext, useContext } from 'react'
-import Profile from '../src/assets/profile.jpg'
+import Profile from '../src/assets/Espela.jpg.jpg'
 
 import { FiDownload, FiMoon, FiSun, FiGithub, FiMail, FiLinkedin, FiMenu, FiX, FiPhone, FiMapPin } from "react-icons/fi";
 import { motion, AnimatePresence } from "framer-motion"
 import LoaderOverlay from './components/ui/LoaderOverlay'
 import ProjectList from './components/ui/ProjectList'
 import HeroSection from './components/ui/HeroSection'
-import Resume from '/public/Kenneth L. Espela-Resume.pdf'
+import Resume from '/public/Kenneth Espela_Resume.pdf.pdf'
 
 const ThemeContext = createContext()
 
@@ -756,7 +756,7 @@ function App() {
                   <div>
                     <h3 className="text-lg font-semibold mb-4">About Me</h3>
                     <p className={`text-sm ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>
-                      Frontend developer focused on creating intuitive and engaging web experiences. Currently studying at Bicol University.
+                      Web developer focused on creating intuitive and engaging web experiences. Currently studying at Bicol University.
                     </p>
                   </div>
                   {/* Quick Links */}
