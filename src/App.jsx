@@ -1,12 +1,12 @@
 import { useState, useEffect, useRef, createContext, useContext } from 'react'
-import Profile from '../src/assets/Espela.jpg.jpg'
+import Profile from '../src/assets/Espela.jpg'
 
 import { FiDownload, FiMoon, FiSun, FiGithub, FiMail, FiLinkedin, FiMenu, FiX, FiPhone, FiMapPin } from "react-icons/fi";
 import { motion, AnimatePresence } from "framer-motion"
 import LoaderOverlay from './components/ui/LoaderOverlay'
 import ProjectList from './components/ui/ProjectList'
 import HeroSection from './components/ui/HeroSection'
-import Resume from '/public/Kenneth Espela_Resume.pdf.pdf'
+import Resume from '/public/Kenneth Espela_Resume.pdf'
 
 const ThemeContext = createContext()
 
