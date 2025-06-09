@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { FiMail, FiGithub, FiLinkedin } from 'react-icons/fi';
 import PropTypes from 'prop-types';
 import Profile from '../../assets/Espela.jpg'
-
+import Resume from '/public/Kenneth Espela_Resume.pdf'
 const roles = [
   'Web Developer',
   'UI/UX Enthusiast',
@@ -143,7 +143,7 @@ const HeroSection = ({ darkMode }) => {
             Hire Me
           </motion.a>
           <motion.a
-            href="/public/Kenneth Espela_Resume.pdf"
+            href={Resume}
             download
             className="w-full sm:w-auto px-6 py-2 rounded-full bg-white dark:bg-gray-800 border border-blue-100 text-blue-500 dark:text-blue-300 font-semibold shadow text-sm sm:text-base md:text-lg text-center focus:outline-none focus:ring-2 focus:ring-blue-100 focus:ring-offset-2 hover:bg-blue-50 dark:hover:bg-gray-700 transition-colors"
             {...ctaAnim}
