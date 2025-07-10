@@ -65,6 +65,13 @@ const ProjectCard = ({
         <h3 className="text-xl sm:text-2xl font-bold mb-2 group-hover:text-blue-500 transition-colors duration-300 tracking-tight">
           {project.title}
         </h3>
+        {project.date && (
+          <div className="mb-2">
+            <span className={`text-xs sm:text-sm font-medium ${darkMode ? 'text-blue-300' : 'text-blue-600'}`}>
+              📅 {project.date}
+            </span>
+          </div>
+        )}
         <div className="mb-3 sm:mb-4">
           {/* Use a ref to determine if text is visually truncated */}
           <TruncatableText
@@ -167,7 +174,8 @@ ProjectCard.propTypes = {
     type: PropTypes.string.isRequired,
     image: PropTypes.string,
     videoUrl: PropTypes.string,
-    link: PropTypes.string
+    link: PropTypes.string,
+    date: PropTypes.string
   }).isRequired,
   files: PropTypes.array.isRequired,
   darkMode: PropTypes.bool.isRequired,
