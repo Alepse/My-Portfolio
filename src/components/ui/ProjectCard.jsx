@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
 import { CiLink } from "react-icons/ci";
 import PropTypes from 'prop-types';
+import OptimizedImage from './OptimizedImage';
 
 const ProjectCard = ({
   project,
@@ -39,11 +40,12 @@ const ProjectCard = ({
           </div>
         ) : file && isImage ? (
           <div className="relative">
-            <img
+            <OptimizedImage
               className="w-full h-48 sm:h-56 md:h-64 object-cover cursor-pointer"
               src={file.url}
               alt={project.title}
               onClick={() => onImageClick({ url: file.url, title: project.title })}
+              sizes="(max-width: 768px) 100vw, 50vw"
             />
           </div>
         ) : (

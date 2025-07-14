@@ -4,6 +4,7 @@ import { FiMail, FiGithub, FiLinkedin } from 'react-icons/fi';
 import PropTypes from 'prop-types';
 import Profile from '../../assets/Espela.jpg'
 import Resume from '/public/Kenneth Espela_Resume.pdf'
+import OptimizedImage from './OptimizedImage'
 const roles = [
   'Web Developer',
   'UI/UX Enthusiast',
@@ -167,10 +168,11 @@ const HeroSection = ({ darkMode }) => {
           className="rounded-full shadow overflow-hidden border-4 border-white dark:border-gray-700 bg-gradient-to-tr from-blue-50 via-indigo-50 to-white dark:from-gray-800 dark:via-gray-900 dark:to-gray-800"
           style={{ boxShadow: '0 0 32px 0 #c7d2fe, 0 0 0 4px #fff' }}
         >
-          <img
+          <OptimizedImage
             src={Profile}
             alt="Kenneth Espela profile"
-            className="w-48 h-48 sm:w-64 sm:h-64 md:w-[420px] md:h-[420px] object-cover "
+            className="w-48 h-48 sm:w-64 sm:h-64 md:w-[420px] md:h-[420px] object-cover"
+            priority={true}
             draggable="false"
           />
         </motion.div>

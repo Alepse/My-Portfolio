@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef, createContext, useContext } from 'react'
+import { useState, useEffect, useRef, createContext, useContext, lazy, Suspense } from 'react'
 import Profile from '../src/assets/Espela.jpg'
 
 import { FiDownload, FiMoon, FiSun, FiGithub, FiMail, FiLinkedin, FiMenu, FiX, FiPhone, FiMapPin } from "react-icons/fi";
@@ -6,133 +6,15 @@ import { motion, AnimatePresence } from "framer-motion"
 import LoaderOverlay from './components/ui/LoaderOverlay'
 import ProjectList from './components/ui/ProjectList'
 import HeroSection from './components/ui/HeroSection'
+import SkillsSection from './components/ui/SkillsSection'
+import OptimizedImage from './components/ui/OptimizedImage'
 import Resume from '/public/Kenneth Espela_Resume.pdf'
+import { skillsData } from './data/skillsData'
+import { projectsData } from './data/projectsData'
 
 const ThemeContext = createContext()
 
-const skillsData = [
-  // Frontend Development
-  { name: 'HTML', icon: 'https://cdn.jsdelivr.net/npm/simple-icons@v7/icons/html5.svg', proficiency: 90, category: 'Frontend' },
-  { name: 'CSS', icon: 'https://cdn.jsdelivr.net/npm/simple-icons@v7/icons/css3.svg', proficiency: 85, category: 'Frontend' },
-  { name: 'JavaScript', icon: 'https://cdn.jsdelivr.net/npm/simple-icons@v7/icons/javascript.svg', proficiency: 75, category: 'Frontend' },
-  { name: 'TypeScript', icon: 'https://cdn.jsdelivr.net/npm/simple-icons@v7/icons/typescript.svg', proficiency: 70, category: 'Frontend' },
-  { name: 'React.js', icon: 'https://cdn.jsdelivr.net/npm/simple-icons@v7/icons/react.svg', proficiency: 75, category: 'Frontend' },
-  { name: 'Next.js', icon: 'https://cdn.jsdelivr.net/npm/simple-icons@v7/icons/nextdotjs.svg', proficiency: 70, category: 'Frontend' },
-  { name: 'Bootstrap', icon: 'https://cdn.jsdelivr.net/npm/simple-icons@v7/icons/bootstrap.svg', proficiency: 75, category: 'Frontend' },
-  { name: 'Tailwind CSS', icon: 'https://cdn.jsdelivr.net/npm/simple-icons@v7/icons/tailwindcss.svg', proficiency: 90, category: 'Frontend' },
-  
-  // Backend Development
-  { name: 'PHP', icon: 'https://cdn.jsdelivr.net/npm/simple-icons@v7/icons/php.svg', proficiency: 40, category: 'Backend' },
-  { name: 'Laravel', icon: 'https://cdn.jsdelivr.net/npm/simple-icons@v7/icons/laravel.svg', proficiency: 40, category: 'Backend' },
-  { name: 'MySQL', icon: 'https://cdn.jsdelivr.net/npm/simple-icons@v7/icons/mysql.svg', proficiency: 50, category: 'Backend' },
-  { name: 'Firebase', icon: 'https://cdn.jsdelivr.net/npm/simple-icons@v7/icons/firebase.svg', proficiency: 50, category: 'Backend' },
-  { name: 'Supabase', icon: 'https://cdn.jsdelivr.net/npm/simple-icons@v7/icons/supabase.svg', proficiency: 50, category: 'Backend' },
 
-  // UI/UX Design
-  { name: 'Figma', icon: 'https://cdn.jsdelivr.net/npm/simple-icons@v7/icons/figma.svg', proficiency: 75, category: 'Design' },
-  { name: 'UI Design', icon: 'https://cdn.jsdelivr.net/npm/simple-icons@v7/icons/adobexd.svg', proficiency: 70, category: 'Design' },
-  { name: 'UX Design', icon: 'https://cdn.jsdelivr.net/npm/simple-icons@v7/icons/sketch.svg', proficiency: 70, category: 'Design' },
-
-  // Development Tools
-  { name: 'Git', icon: 'https://cdn.jsdelivr.net/npm/simple-icons@v7/icons/git.svg', proficiency: 85, category: 'Tools' },
-  { name: 'GitHub', icon: 'https://cdn.jsdelivr.net/npm/simple-icons@v7/icons/github.svg', proficiency: 85, category: 'Tools' },
-  { name: 'Netlify', icon: 'https://cdn.jsdelivr.net/npm/simple-icons@v7/icons/netlify.svg', proficiency: 80, category: 'Tools' },
-  { name: 'Vercel', icon: 'https://cdn.jsdelivr.net/npm/simple-icons@v7/icons/vercel.svg', proficiency: 70, category: 'Tools' },
-  { name: 'Vite', icon: 'https://cdn.jsdelivr.net/npm/simple-icons@v7/icons/vite.svg', proficiency: 75, category: 'Tools' }
-]
-
-const projectsData = [
-  {
-    title: "The Latte Lane",
-    description: "An e-commerce cafe website with booking appointment, crud operations and ordering system.",
-    tech: ["Laravel", "PHP", "MySQL", "Bootstrap"],
-    type: "Full-Stack",
-    videoUrl: "https://www.youtube.com/embed/4KLAuj0FehM",
-    image: "thelattlane-thumbnail.png",
-    date: "November 2023 - December 2023"
-  },
-  {
-    title: "Inventory Manager",
-    description: "A simple inventory management system that allows users to add, update, and delete inventory items.",
-    tech: ["Laravel", "PHP", "MySQL", "Bootstrap"],
-    type: "Full-Stack",
-    videoUrl: "https://www.youtube.com/embed/eiPsCXTKLO8",
-    image: "inventory-thumbnail.png",
-    date: "August 2024"
-  },
-  {
-    title: "Payl",
-    link: "https://ias2-f7656.web.app/",
-    description: "A file management system that incorporates basic security features like encryption standards and CRUD operations for managing files.",
-    tech: ["Firebase", "React.js", "Tailwind CSS","Javascript"],
-    type: "Full-Stack",
-    image: "payl.png",
-    date: "July 2024 - August 2024"
-  },
-  {
-    title: "Spa-ntaneous",
-    link: "https://spantaneous.netlify.app/",
-    description: "An e-commerce spa services website with modern design and booking functionality.",
-    tech: ["React.js", "Tailwind CSS", "MySQL","Javascript"],
-    type: "Frontend",
-    image: "spa.png",
-    date: "April 2024 - May 2024"
-  },
-  {
-    title: "Internship Blog",
-    link: "https://blog-wfg8.vercel.app/",
-    description: "A blog website for my documentation of my internship experience in a government agency, Department of Science and Technology Region 5 (DOST-V).",
-    tech: ["React.js", "Tailwind CSS","Javascript"],
-    type: "Frontend",
-    image: "blog.png",
-    date: "April 2025 - May 2025"
-  },
-  {
-    title: "Syncko",
-    description: "This is a knowledge sharing platform that allows employees to share their knowledge and expertise with other employees throughout the agency Department of Science and Technology Region 5 (DOST-V). This is a required project for my internship in DOST-V.",
-    tech: ["Next.js","PostgreSQL","Prisma","Tailwind CSS","TypeScript","Chart.js","Shadcn"],
-    type: "Frontend",
-    videoUrl: "https://www.youtube.com/embed/NSxgBuGNPpM",
-    image: "syncko-thumbnail.png",
-    date: "February 2025 - May 2025"
-  },
-  {
-    title: "Basic Portfolio Website",
-    link: "https://alepse.netlify.app/",
-    description: "This is my first personal website, created during my second year of college. Within this portfolio, you can explore a collection of my early programming projects.",
-    tech: ["HTML", "CSS", "JavaScript"],
-    type: "Frontend",
-    image: "portfolio.png",
-    date: "October 2022"
-  },
-  {
-    title: "Rabasorsogon",
-    description: "A tourism website designed to enhance user experience with key features including a trip planning, an integrated chat system for real-time communication, and a booking system.",
-    tech: ["React.js", "Tailwind CSS", "JavaScript", "Redux", "Shadcn","NextUI","Framer Motion","Node.js","MySQL"],
-    type: "Frontend",
-    videoUrl: "https://www.youtube.com/embed/DAR9A8SU58I",
-    image: "rabasorsogon-thumbnail.png",
-    date: "November 2024 - January 2025"
-  },
-  {
-    title: "Tic-Tac-Toe",
-    link: "https://tictactoe-nine-chi.vercel.app/",
-    description: "A simple Tic-Tac-Toe game built with Next.js and Tailwind CSS",
-    tech: ["Next.js", "Tailwind CSS", "JavaScript"],
-    type: "Frontend",
-    image: "tic-tac-toe.png",
-    date: "June 2025"
-  },
-  {
-    title: "The Wall Social Media Platform",
-    link: "https://thewall-app-kdlo.vercel.app/",
-    description: "Simple social media platform with post and comment system functionalities",
-    tech: ["Next.js", "Tailwind CSS", "TypeScript", "Supabase"],
-    type: "Full-Stack",
-    image: "wall.png",
-    date: "July 2025"
-  }
-]
 
 function App() {
   const [files, setFiles] = useState([])
@@ -177,13 +59,15 @@ function App() {
           }))
         })
       },
-      { threshold: 0.1 }
+      { 
+        threshold: 0.1,
+        rootMargin: '0px 0px -10% 0px' // Trigger slightly before element comes into view
+      }
     )
 
-    Object.values(sectionRefs).forEach(ref => {
-      if (ref.current) {
-        observer.observe(ref.current)
-      }
+    const refs = Object.values(sectionRefs).filter(ref => ref.current)
+    refs.forEach(ref => {
+      observer.observe(ref.current)
     })
 
     return () => observer.disconnect()
@@ -272,10 +156,11 @@ function App() {
       {modalImage && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-70" onClick={() => setModalImage(null)}>
           <div className="relative max-w-3xl w-full mx-4" onClick={e => e.stopPropagation()}>
-            <img
+            <OptimizedImage
               src={modalImage.url}
               alt={modalImage.title}
               className="w-full max-h-[80vh] object-contain rounded-lg shadow-2xl border-4 border-white"
+              priority={true}
             />
             <button
               onClick={() => setModalImage(null)}
@@ -487,72 +372,11 @@ function App() {
                 ))}
               </div>
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-3 md:gap-6 px-2 md:px-0">
-                <AnimatePresence mode="wait">
-                  {skillsData
-                    .filter(skill => activeCategory === 'All' || skill.category === activeCategory)
-                    .map((skill, index) => (
-                      <motion.div
-                        key={skill.name}
-                        layout
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        exit={{ opacity: 0, y: -20 }}
-                        transition={{ duration: 0.3, delay: index * 0.1 }}
-                        className={`${
-                          darkMode ? 'bg-gray-800' : 'bg-white'
-                        } p-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300`}
-                      >
-                        <div className="flex items-center gap-4 mb-4">
-                          <div className={`p-3 rounded-lg ${
-                            darkMode ? 'bg-gray-700' : 'bg-gray-100'
-                          }`}>
-                            <img
-                              src={skill.icon}
-                              alt={`${skill.name} icon`}
-                              className="w-8 h-8"
-                              style={{ filter: darkMode ? 'invert(1)' : 'invert(0.5)' }}
-                            />
-                          </div>
-                          <div>
-                            <h3 className="text-lg font-semibold">{skill.name}</h3>
-                            <span className={`text-sm ${
-                              darkMode ? 'text-gray-400' : 'text-gray-500'
-                            }`}>
-                              {skill.category}
-                            </span>
-                          </div>
-                        </div>
-                        <div className="space-y-2">
-                          <div className="flex justify-between items-center">
-                            <span className={`text-sm font-medium ${
-                              darkMode ? 'text-gray-300' : 'text-gray-600'
-                            }`}>
-                              Proficiency
-                            </span>
-                            <span className={`text-sm ${
-                              darkMode ? 'text-blue-400' : 'text-blue-600'
-                            }`}>
-                              {skill.proficiency}%
-                            </span>
-                          </div>
-                          <div className="w-full bg-gray-200 rounded-full h-2 dark:bg-gray-700">
-                            <motion.div
-                              className={`h-2 rounded-full ${
-                                darkMode 
-                                  ? 'bg-gradient-to-r from-blue-500 to-blue-400' 
-                                  : 'bg-gradient-to-r from-blue-600 to-blue-500'
-                              }`}
-                              initial={{ width: 0 }}
-                              animate={{ width: `${skill.proficiency}%` }}
-                              transition={{ duration: 1, delay: index * 0.1 }}
-                            />
-                          </div>
-                        </div>
-                      </motion.div>
-                    ))}
-                </AnimatePresence>
-              </div>
+              <SkillsSection 
+                skillsData={skillsData}
+                darkMode={darkMode}
+                activeCategory={activeCategory}
+              />
             </motion.section>
 
             {/* Projects Section */}
