@@ -6,10 +6,8 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "build:analyze": "vite build --mode analyze",
     "lint": "eslint .",
-    "preview": "vite preview",
-    "optimize-images": "node scripts/optimize-images.js"
+    "preview": "vite preview"
   },
   "dependencies": {
     "@uiw/react-loader": "^4.22.3",
@@ -33,7 +31,6 @@
     "globals": "^15.9.0",
     "postcss": "^8.4.45",
     "tailwindcss": "^3.4.11",
-    "terser": "^5.43.1",
     "vite": "^5.4.1"
   }
 }
