@@ -783,7 +783,7 @@ function App() {
                   <div>
                     <h3 className="text-lg font-semibold mb-4">About Me</h3>
                     <p className={`text-sm ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>
-                      Web developer focused on creating intuitive and engaging web experiences.
+                      Web developer focused on creating intuitive and engaging web experiences. Currently studying at Bicol University.
                     </p>
                   </div>
                   {/* Quick Links */}
