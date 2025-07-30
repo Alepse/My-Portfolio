@@ -123,7 +123,7 @@ const HeroSection = ({ darkMode }) => {
             <FiGithub />
           </motion.a>
           <motion.a
-            href="https://linkedin.com/in/kenneth-espela"
+            href="https://www.linkedin.com/in/kenneth-espela-123653180/"
             target="_blank"
             rel="noopener noreferrer"
             aria-label="LinkedIn"

@@ -547,14 +547,14 @@ function App() {
                         <div className="text-left">
                           <p className="text-sm font-medium mb-1">LinkedIn</p>
                           <a 
-                            href="https://linkedin.com/in/kenneth-espela"
+                            href="https://www.linkedin.com/in/kenneth-espela-123653180/"
                             target="_blank"
                             rel="noopener noreferrer"
                             className={`text-sm ${
                               darkMode ? 'text-blue-400 hover:text-blue-300' : 'text-blue-600 hover:text-blue-700'
                             }`}
                           >
-                            linkedin.com/in/kenneth-espela
+                           https://www.linkedin.com/in/kenneth-espela-123653180/
                           </a>
                         </div>
                       </div>
@@ -580,7 +580,7 @@ function App() {
                     Email Me
                   </a>
                   <a
-                    href="https://www.linkedin.com/in/kenneth-espela"
+                    href="https://www.linkedin.com/in/kenneth-espela-123653180/"
                     target="_blank"
                     rel="noopener noreferrer"
                     className={`w-full sm:w-auto flex items-center justify-center gap-2 px-6 py-3 rounded-full transition-colors duration-300 ${
@@ -663,7 +663,7 @@ function App() {
                         <FiGithub />
                       </a>
                       <a
-                        href="https://linkedin.com/in/kenneth-espela"
+                        href="https://www.linkedin.com/in/kenneth-espela-123653180/"
                         target="_blank"
                         rel="noopener noreferrer"
                         className={`text-xl ${
