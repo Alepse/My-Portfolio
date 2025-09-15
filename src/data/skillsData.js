@@ -9,11 +9,11 @@ export const skillsData = [
   { name: 'Bootstrap', icon: 'https://cdn.jsdelivr.net/npm/simple-icons@v7/icons/bootstrap.svg', proficiency: 75, category: 'Frontend' },
   { name: 'Tailwind CSS', icon: 'https://cdn.jsdelivr.net/npm/simple-icons@v7/icons/tailwindcss.svg', proficiency: 90, category: 'Frontend' },
   { name: 'Chart.js', icon: 'https://cdn.jsdelivr.net/npm/simple-icons@v7/icons/chartdotjs.svg', proficiency: 70, category: 'Frontend' },
-  { name: 'Shadcn', icon: '', proficiency: 70, category: 'Frontend' },
+  { name: 'Shadcn', icon: 'https://raw.githubusercontent.com/shadcn/ui/main/apps/www/public/favicon.ico', proficiency: 70, category: 'Frontend' },
   { name: 'Redux', icon: 'https://cdn.jsdelivr.net/npm/simple-icons@v7/icons/redux.svg', proficiency: 70, category: 'Frontend' },
-  { name: 'NextUI', icon: '', proficiency: 70, category: 'Frontend' },
+  { name: 'NextUI', icon: 'NextUI', proficiency: 70, category: 'Frontend' },
   { name: 'Framer Motion', icon: 'https://cdn.jsdelivr.net/npm/simple-icons@v7/icons/framer.svg', proficiency: 70, category: 'Frontend' },
-  { name: 'Aceternity UI', icon: '', proficiency: 70, category: 'Frontend' },
+  { name: 'Aceternity UI', icon: 'https://aceternity.com/favicon.ico', proficiency: 70, category: 'Frontend' },
 
   // Backend Development
   { name: 'PHP', icon: 'https://cdn.jsdelivr.net/npm/simple-icons@v7/icons/php.svg', proficiency: 40, category: 'Backend' },
