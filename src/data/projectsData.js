@@ -88,5 +88,23 @@ export const projectsData = [
     type: "Full-Stack",
     image: "wall.png",
     date: "July 2025"
-  }
-]; 
+  },
+  {
+    title: "Mini Country",
+    link: "https://mini-country.vercel.app/",
+    description: "A simple country information website that allows users to search for countries and view their details.",
+    tech: ["Next.js", "React.js", "Tailwind CSS", "TypeScript", "Aceternity UI"],
+    type: "Frontend",
+    image: "mini-country.png",
+    date: "August 2025"
+  },
+  {
+    title: "Unity Trials",
+    link: "https://unitytrials.org/",
+    description: "A platform that connects individuals with clinical trials, making finding and signing up easy, efficient, and inclusive. Unity Trials promotes diverse participation and provides Trial Navigators who offer personalized support and coordinate each step of the trial participation process.",
+    tech: ["Next.js", "Nest.js","Contenful","Algolia", "CSS", "JavaScript","Docker","Redis", "MongoDB","AWS"],
+    type: "Full-Stack",
+    image: "unity-trials.png",
+    date: "August 2025 - September 2025"
+  },
+];
