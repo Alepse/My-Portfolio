@@ -8,7 +8,7 @@ import ProjectList from './components/ui/ProjectList'
 import HeroSection from './components/ui/HeroSection'
 import SkillsSection from './components/ui/SkillsSection'
 import OptimizedImage from './components/ui/OptimizedImage'
-import Resume from '/public/Kenneth Espela_Resume.pdf'
+import Resume from '/public/Espela,Kenneth_Resume.pdf'
 import { skillsData } from './data/skillsData'
 import { projectsData } from './data/projectsData'
 

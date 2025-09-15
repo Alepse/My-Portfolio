@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { FiMail, FiGithub, FiLinkedin } from 'react-icons/fi';
 import PropTypes from 'prop-types';
 import Profile from '../../assets/Espela.jpg'
-import Resume from '/public/Kenneth Espela_Resume.pdf'
+import Resume from '/public/Espela,Kenneth_Resume.pdf'
 import OptimizedImage from './OptimizedImage'
 const roles = [
   'Web Developer',
