@@ -8,13 +8,25 @@ export const skillsData = [
   { name: 'Next.js', icon: 'https://cdn.jsdelivr.net/npm/simple-icons@v7/icons/nextdotjs.svg', proficiency: 70, category: 'Frontend' },
   { name: 'Bootstrap', icon: 'https://cdn.jsdelivr.net/npm/simple-icons@v7/icons/bootstrap.svg', proficiency: 75, category: 'Frontend' },
   { name: 'Tailwind CSS', icon: 'https://cdn.jsdelivr.net/npm/simple-icons@v7/icons/tailwindcss.svg', proficiency: 90, category: 'Frontend' },
-  
+  { name: 'Chart.js', icon: 'https://cdn.jsdelivr.net/npm/simple-icons@v7/icons/chartdotjs.svg', proficiency: 70, category: 'Frontend' },
+  { name: 'Shadcn', icon: '', proficiency: 70, category: 'Frontend' },
+  { name: 'Redux', icon: 'https://cdn.jsdelivr.net/npm/simple-icons@v7/icons/redux.svg', proficiency: 70, category: 'Frontend' },
+  { name: 'NextUI', icon: '', proficiency: 70, category: 'Frontend' },
+  { name: 'Framer Motion', icon: 'https://cdn.jsdelivr.net/npm/simple-icons@v7/icons/framer.svg', proficiency: 70, category: 'Frontend' },
+  { name: 'Aceternity UI', icon: '', proficiency: 70, category: 'Frontend' },
+
   // Backend Development
   { name: 'PHP', icon: 'https://cdn.jsdelivr.net/npm/simple-icons@v7/icons/php.svg', proficiency: 40, category: 'Backend' },
   { name: 'Laravel', icon: 'https://cdn.jsdelivr.net/npm/simple-icons@v7/icons/laravel.svg', proficiency: 40, category: 'Backend' },
   { name: 'MySQL', icon: 'https://cdn.jsdelivr.net/npm/simple-icons@v7/icons/mysql.svg', proficiency: 50, category: 'Backend' },
   { name: 'Firebase', icon: 'https://cdn.jsdelivr.net/npm/simple-icons@v7/icons/firebase.svg', proficiency: 50, category: 'Backend' },
   { name: 'Supabase', icon: 'https://cdn.jsdelivr.net/npm/simple-icons@v7/icons/supabase.svg', proficiency: 50, category: 'Backend' },
+  { name: 'Prisma', icon: 'https://cdn.jsdelivr.net/npm/simple-icons@v7/icons/prisma.svg', proficiency: 70, category: 'Backend' },
+  { name: 'Node.js', icon: 'https://cdn.jsdelivr.net/npm/simple-icons@v7/icons/nodedotjs.svg', proficiency: 70, category: 'Backend' },
+  { name: 'Nest.js', icon: 'https://cdn.jsdelivr.net/npm/simple-icons@v7/icons/nestjs.svg', proficiency: 70, category: 'Backend' },
+  { name: 'MongoDB', icon: 'https://cdn.jsdelivr.net/npm/simple-icons@v7/icons/mongodb.svg', proficiency: 70, category: 'Backend' },
+  { name: 'Redis', icon: 'https://cdn.jsdelivr.net/npm/simple-icons@v7/icons/redis.svg', proficiency: 70, category: 'Backend' },
+  { name: 'AWS', icon: 'https://cdn.jsdelivr.net/npm/simple-icons@v7/icons/amazonaws.svg', proficiency: 70, category: 'Backend' },
 
   // UI/UX Design
   { name: 'Figma', icon: 'https://cdn.jsdelivr.net/npm/simple-icons@v7/icons/figma.svg', proficiency: 75, category: 'Design' },
@@ -26,5 +38,8 @@ export const skillsData = [
   { name: 'GitHub', icon: 'https://cdn.jsdelivr.net/npm/simple-icons@v7/icons/github.svg', proficiency: 85, category: 'Tools' },
   { name: 'Netlify', icon: 'https://cdn.jsdelivr.net/npm/simple-icons@v7/icons/netlify.svg', proficiency: 80, category: 'Tools' },
   { name: 'Vercel', icon: 'https://cdn.jsdelivr.net/npm/simple-icons@v7/icons/vercel.svg', proficiency: 70, category: 'Tools' },
-  { name: 'Vite', icon: 'https://cdn.jsdelivr.net/npm/simple-icons@v7/icons/vite.svg', proficiency: 75, category: 'Tools' }
-]; 
+  { name: 'Vite', icon: 'https://cdn.jsdelivr.net/npm/simple-icons@v7/icons/vite.svg', proficiency: 75, category: 'Tools' },
+  { name: 'Docker', icon: 'https://cdn.jsdelivr.net/npm/simple-icons@v7/icons/docker.svg', proficiency: 70, category: 'Tools' },
+  { name: 'Algolia', icon: 'https://cdn.jsdelivr.net/npm/simple-icons@v7/icons/algolia.svg', proficiency: 70, category: 'Tools' },
+  { name: 'Contentful', icon: 'https://cdn.jsdelivr.net/npm/simple-icons@v7/icons/contentful.svg', proficiency: 70, category: 'Tools' }
+];
