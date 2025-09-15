@@ -69,7 +69,8 @@ export const projectsData = [
     type: "Frontend",
     videoUrl: "https://www.youtube.com/embed/DAR9A8SU58I",
     image: "rabasorsogon-thumbnail.png",
-    date: "November 2024 - January 2025"
+    date: "November 2024 - January 2025",
+    hideReadMore: true
   },
   {
     title: "Tic-Tac-Toe",
