@@ -6,11 +6,9 @@ const SkillsSection = ({ skillsData, darkMode, activeCategory }) => {
   const [isExpanded, setIsExpanded] = useState(false);
   
   // Filter skills based on active category
-  const filteredSkills = useMemo(() => {
-    return skillsData.filter(skill => 
-      activeCategory === 'All' || skill.category === activeCategory
-    );
-  }, [skillsData, activeCategory]);
+  const filteredSkills = skillsData.filter(skill => 
+    activeCategory === 'All' || skill.category === activeCategory
+  );
 
   // Determine which skills to show
   const visibleSkills = isExpanded ? filteredSkills : filteredSkills.slice(0, 8);
@@ -227,4 +225,4 @@ SkillsSection.propTypes = {
   activeCategory: PropTypes.string.isRequired,
 };
 
-export default SkillsSection; 
+export default SkillsSection;
