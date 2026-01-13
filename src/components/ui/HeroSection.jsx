@@ -1,40 +1,41 @@
-import { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { FiMail, FiGithub, FiLinkedin } from 'react-icons/fi';
-import PropTypes from 'prop-types';
-import Profile from '../../assets/Espela.jpg'
-import Resume from '/public/Espela_CV.pdf'
-import OptimizedImage from './OptimizedImage'
-const roles = [
-  'Web Developer',
-  'UI/UX Enthusiast',
-  'Open to Work',
-];
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { FiMail, FiGithub, FiLinkedin } from "react-icons/fi";
+import PropTypes from "prop-types";
+import Profile from "../../assets/Espela.jpg";
+import Resume from "/public/Espela_CV.pdf";
+import OptimizedImage from "./OptimizedImage";
+const roles = ["Web Developer", "UI/UX Enthusiast", "Open to Work"];
 
 const highlight = {
-  initial: { color: '#2563eb', scale: 1 },
-  animate: { color: '#3b82f6', scale: 1.08 },
-  transition: { repeat: Infinity, repeatType: 'mirror', duration: 1.2, ease: 'easeInOut' }
+  initial: { color: "#2563eb", scale: 1 },
+  animate: { color: "#3b82f6", scale: 1.08 },
+  transition: {
+    repeat: Infinity,
+    repeatType: "mirror",
+    duration: 1.2,
+    ease: "easeInOut",
+  },
 };
 
 const badgeAnim = {
   animate: {
     scale: [1, 1.08, 1],
     boxShadow: [
-      '0 0 0px 0px #f59e42',
-      '0 0 16px 6px #f59e42',
-      '0 0 0px 0px #f59e42',
+      "0 0 0px 0px #f59e42",
+      "0 0 16px 6px #f59e42",
+      "0 0 0px 0px #f59e42",
     ],
     transition: {
       duration: 2.2,
       repeat: Infinity,
-      ease: 'easeInOut',
+      ease: "easeInOut",
     },
   },
 };
 
 const ctaAnim = {
-  whileHover: { scale: 1.06, boxShadow: '0 4px 24px 0 #2563eb40' },
+  whileHover: { scale: 1.06, boxShadow: "0 4px 24px 0 #2563eb40" },
   whileTap: { scale: 0.97 },
 };
 
@@ -43,7 +44,10 @@ const HeroSection = ({ darkMode }) => {
 
   // Cycle role every 2.5s
   useState(() => {
-    const interval = setInterval(() => setRoleIdx(idx => (idx + 1) % roles.length), 2500);
+    const interval = setInterval(
+      () => setRoleIdx((idx) => (idx + 1) % roles.length),
+      2500
+    );
     return () => clearInterval(interval);
   }, []);
 
@@ -61,13 +65,16 @@ const HeroSection = ({ darkMode }) => {
             className="px-3 py-1 rounded-full text-xs font-bold bg-orange-200 text-orange-800 shadow-sm border border-orange-300"
             {...badgeAnim}
             animate="animate"
-            style={{ background: 'linear-gradient(90deg, #fef6e4 0%, #f3e8ff 100%)', color: '#d97706' }}
+            style={{
+              background: "linear-gradient(90deg, #fef6e4 0%, #f3e8ff 100%)",
+              color: "#d97706",
+            }}
           >
             Available for Hire
           </motion.span>
         </div>
         <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-3 sm:mb-4 leading-tight">
-          Hi, I'm{' '}
+          Hi, I'm{" "}
           <motion.span
             variants={highlight}
             initial="initial"
@@ -97,16 +104,21 @@ const HeroSection = ({ darkMode }) => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.4, duration: 0.8 }}
-          className={`mb-6 sm:mb-8 text-base sm:text-lg md:text-xl ${darkMode ? 'text-gray-400' : 'text-gray-600'} font-normal leading-relaxed`}
+          className={`mb-6 sm:mb-8 text-base sm:text-lg md:text-xl ${
+            darkMode ? "text-gray-400" : "text-gray-600"
+          } font-normal leading-relaxed`}
         >
-          Transforming ideas into engaging digital experiences. <span className="font-bold text-blue-400">Let's build something amazing together!</span>
+          Transforming ideas into engaging digital experiences.{" "}
+          <span className="font-bold text-blue-400">
+            Let's build something amazing together!
+          </span>
         </motion.p>
         <div className="flex justify-center md:justify-start gap-4 mb-4 sm:mb-6">
           <motion.a
             href="mailto:kenneth.espela@gmail.com"
             aria-label="Email"
             className="hover:text-blue-500 transition-colors text-xl sm:text-2xl"
-            whileHover={{ scale: 1.2, color: '#2563eb' }}
+            whileHover={{ scale: 1.2, color: "#2563eb" }}
             whileTap={{ scale: 0.93 }}
           >
             <FiMail />
@@ -117,7 +129,7 @@ const HeroSection = ({ darkMode }) => {
             rel="noopener noreferrer"
             aria-label="GitHub"
             className="hover:text-blue-500 transition-colors text-xl sm:text-2xl"
-            whileHover={{ scale: 1.2, color: '#2563eb' }}
+            whileHover={{ scale: 1.2, color: "#2563eb" }}
             whileTap={{ scale: 0.93 }}
           >
             <FiGithub />
@@ -128,7 +140,7 @@ const HeroSection = ({ darkMode }) => {
             rel="noopener noreferrer"
             aria-label="LinkedIn"
             className="hover:text-blue-500 transition-colors text-xl sm:text-2xl"
-            whileHover={{ scale: 1.2, color: '#2563eb' }}
+            whileHover={{ scale: 1.2, color: "#2563eb" }}
             whileTap={{ scale: 0.93 }}
           >
             <FiLinkedin />
@@ -139,7 +151,7 @@ const HeroSection = ({ darkMode }) => {
             href="mailto:kenneth.espela@gmail.com"
             className="w-full sm:w-auto px-6 py-2 rounded-full bg-blue-400 text-white font-semibold shadow text-sm sm:text-base md:text-lg text-center focus:outline-none focus:ring-2 focus:ring-blue-200 focus:ring-offset-2 hover:bg-blue-500 transition-colors"
             {...ctaAnim}
-            style={{ boxShadow: '0 2px 12px #60a5fa22' }}
+            style={{ boxShadow: "0 2px 12px #60a5fa22" }}
           >
             Hire Me
           </motion.a>
@@ -148,7 +160,7 @@ const HeroSection = ({ darkMode }) => {
             download
             className="w-full sm:w-auto px-6 py-2 rounded-full bg-white dark:bg-gray-800 border border-blue-100 text-blue-500 dark:text-blue-300 font-semibold shadow text-sm sm:text-base md:text-lg text-center focus:outline-none focus:ring-2 focus:ring-blue-100 focus:ring-offset-2 hover:bg-blue-50 dark:hover:bg-gray-700 transition-colors"
             {...ctaAnim}
-            style={{ boxShadow: '0 2px 12px #c7d2fe22' }}
+            style={{ boxShadow: "0 2px 12px #c7d2fe22" }}
           >
             Download Resume
           </motion.a>
@@ -162,11 +174,15 @@ const HeroSection = ({ darkMode }) => {
         className="flex-1  flex justify-center items-center z-10"
       >
         <motion.div
-          whileHover={{ scale: 1.04, rotate: 1, boxShadow: '0 0 32px 0 #c7d2fe, 0 0 0 4px #fff' }}
+          whileHover={{
+            scale: 1.04,
+            rotate: 1,
+            boxShadow: "0 0 32px 0 #c7d2fe, 0 0 0 4px #fff",
+          }}
           whileTap={{ scale: 0.97, rotate: -1 }}
-          transition={{ type: 'spring', stiffness: 180, damping: 16 }}
+          transition={{ type: "spring", stiffness: 180, damping: 16 }}
           className="rounded-full shadow overflow-hidden border-4 border-white dark:border-gray-700 bg-gradient-to-tr from-blue-50 via-indigo-50 to-white dark:from-gray-800 dark:via-gray-900 dark:to-gray-800"
-          style={{ boxShadow: '0 0 32px 0 #c7d2fe, 0 0 0 4px #fff' }}
+          style={{ boxShadow: "0 0 32px 0 #c7d2fe, 0 0 0 4px #fff" }}
         >
           <OptimizedImage
             src={Profile}
@@ -181,12 +197,12 @@ const HeroSection = ({ darkMode }) => {
       <motion.div
         className="absolute -top-16 left-1/4 w-48 sm:w-64 md:w-72 h-48 sm:h-64 md:h-72 bg-blue-100 dark:bg-blue-900/30 rounded-full blur-3xl z-0"
         animate={{ scale: [1, 1.08, 1], opacity: [0.5, 0.7, 0.5] }}
-        transition={{ repeat: Infinity, duration: 7, ease: 'easeInOut' }}
+        transition={{ repeat: Infinity, duration: 7, ease: "easeInOut" }}
       />
       <motion.div
         className="absolute bottom-0 right-0 w-36 sm:w-48 md:w-56 h-36 sm:h-48 md:h-56 bg-indigo-100 dark:bg-indigo-900/30 rounded-full blur-2xl z-0"
         animate={{ scale: [1, 1.12, 1], opacity: [0.4, 0.6, 0.4] }}
-        transition={{ repeat: Infinity, duration: 9, ease: 'easeInOut' }}
+        transition={{ repeat: Infinity, duration: 9, ease: "easeInOut" }}
       />
     </section>
   );
