@@ -1,5 +1,14 @@
 export const projectsData = [
   {
+    title: "Basic Portfolio Website",
+    link: "https://alepse.netlify.app/",
+    description: "This is my first personal website, created during my second year of college. Within this portfolio, you can explore a collection of my early programming projects.",
+    tech: ["HTML", "CSS", "JavaScript"],
+    type: "Frontend",
+    image: "portfolio.png",
+    date: "October 2022"
+  },
+  {
     title: "The Latte Lane",
     description: "An e-commerce cafe website with booking appointment, crud operations and ordering system.",
     tech: ["Laravel", "PHP", "MySQL", "Bootstrap"],
@@ -7,24 +16,6 @@ export const projectsData = [
     videoUrl: "https://www.youtube.com/embed/4KLAuj0FehM",
     image: "thelattlane-thumbnail.png",
     date: "November 2023 - December 2023"
-  },
-  {
-    title: "Inventory Manager",
-    description: "A simple inventory management system that allows users to add, update, and delete inventory items.",
-    tech: ["Laravel", "PHP", "MySQL", "Bootstrap"],
-    type: "Full-Stack",
-    videoUrl: "https://www.youtube.com/embed/eiPsCXTKLO8",
-    image: "inventory-thumbnail.png",
-    date: "August 2024"
-  },
-  {
-    title: "Payl",
-    link: "https://ias2-f7656.web.app/",
-    description: "A file management system that incorporates basic security features like encryption standards and CRUD operations for managing files.",
-    tech: ["Firebase", "React.js", "Tailwind CSS","Javascript"],
-    type: "Full-Stack",
-    image: "payl.png",
-    date: "July 2024 - August 2024"
   },
   {
     title: "Spa-ntaneous",
@@ -36,13 +27,32 @@ export const projectsData = [
     date: "April 2024 - May 2024"
   },
   {
-    title: "Internship Blog",
-    link: "https://blog-wfg8.vercel.app/",
-    description: "A blog website for my documentation of my internship experience in a government agency, Department of Science and Technology Region 5 (DOST-V).",
-    tech: ["React.js", "Tailwind CSS","Javascript"],
+    title: "Payl",
+    link: "https://ias2-f7656.web.app/",
+    description: "A file management system that incorporates basic security features like encryption standards and CRUD operations for managing files.",
+    tech: ["Firebase", "React.js", "Tailwind CSS","Javascript"],
+    type: "Full-Stack",
+    image: "payl.png",
+    date: "July 2024 - August 2024"
+  },
+  {
+    title: "Inventory Manager",
+    description: "A simple inventory management system that allows users to add, update, and delete inventory items.",
+    tech: ["Laravel", "PHP", "MySQL", "Bootstrap"],
+    type: "Full-Stack",
+    videoUrl: "https://www.youtube.com/embed/eiPsCXTKLO8",
+    image: "inventory-thumbnail.png",
+    date: "August 2024"
+  },
+  {
+    title: "Rabasorsogon",
+    description: "A tourism website designed to enhance user experience with key features including a trip planning, an integrated chat system for real-time communication, and a booking system.",
+    tech: ["React.js", "Tailwind CSS", "JavaScript", "Redux", "Shadcn","NextUI","Framer Motion","Node.js","MySQL"],
     type: "Frontend",
-    image: "blog.png",
-    date: "April 2025 - May 2025"
+    videoUrl: "https://www.youtube.com/embed/DAR9A8SU58I",
+    image: "rabasorsogon-thumbnail.png",
+    date: "November 2024 - January 2025",
+    hideReadMore: true
   },
   {
     title: "Syncko",
@@ -54,23 +64,13 @@ export const projectsData = [
     date: "February 2025 - May 2025"
   },
   {
-    title: "Basic Portfolio Website",
-    link: "https://alepse.netlify.app/",
-    description: "This is my first personal website, created during my second year of college. Within this portfolio, you can explore a collection of my early programming projects.",
-    tech: ["HTML", "CSS", "JavaScript"],
+    title: "Internship Blog",
+    link: "https://blog-wfg8.vercel.app/",
+    description: "A blog website for my documentation of my internship experience in a government agency, Department of Science and Technology Region 5 (DOST-V).",
+    tech: ["React.js", "Tailwind CSS","Javascript"],
     type: "Frontend",
-    image: "portfolio.png",
-    date: "October 2022"
-  },
-  {
-    title: "Rabasorsogon",
-    description: "A tourism website designed to enhance user experience with key features including a trip planning, an integrated chat system for real-time communication, and a booking system.",
-    tech: ["React.js", "Tailwind CSS", "JavaScript", "Redux", "Shadcn","NextUI","Framer Motion","Node.js","MySQL"],
-    type: "Frontend",
-    videoUrl: "https://www.youtube.com/embed/DAR9A8SU58I",
-    image: "rabasorsogon-thumbnail.png",
-    date: "November 2024 - January 2025",
-    hideReadMore: true
+    image: "blog.png",
+    date: "April 2025 - May 2025"
   },
   {
     title: "Tic-Tac-Toe",
@@ -107,5 +107,24 @@ export const projectsData = [
     type: "Full-Stack",
     image: "unity-trials.png",
     date: "August 2025 - September 2025"
+  },
+  {
+    title: "BPC CRM - Pest Control Management System",
+    description: "Developing front-end modernization of a legacy pest control system into a high-performance B2B SaaS platform. Responsible for translating complex Figma designs into responsive, pixel-perfect code using React.js, TypeScript, and Bootstrap. Architected a scalable multi-tenant interface that handles appointment scheduling and billing automation, utilizing Zustand for efficient state management across data-heavy dashboards.",
+    tech: ["React JS", "TypeScript", "Bootstrap", "CSS", "Zustand", "Vite"],
+    type: "Frontend",
+    image: "bpc.png",
+    date: "November 2025 - Present",
+    company: "Outrank Strategy | Remote (Utah, USA)"
+  },
+  {
+    title: "Kowalskamoda",
+    link: "https://kowalskamoda.com/",
+    description: "Provided ongoing technical support for Kawalskamoda, a Shopify e-commerce store, focusing on site stability and user experience. Implemented code-level UI/UX fixes using Liquid and CSS to resolve layout inconsistencies and drive Conversion Rate Optimization (CRO) initiatives. Conducted regular SEO audits to identify and fix broken links, metadata errors, and speed bottlenecks.",
+    tech: ["Shopify Liquid", "HTML5", "CSS3", "JavaScript"],
+    type: "Frontend",
+    image: "kowalska-moda.png",
+    date: "January 2026",
+    company: "Kawalskamoda | Remote (Netherlands)"
   },
 ];
